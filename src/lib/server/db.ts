@@ -3,10 +3,11 @@ import pkg from "pg";
 const { Client } = pkg;
 
 const client = new Client({
-	host: import.meta.env.VITE_DATABASE_HOST,
-	user: import.meta.env.VITE_DATABASE_USERNAME,
-	password: import.meta.env.VITE_DATABASE_PASSWORD,
-	database: import.meta.env.VITE_DATABASE_NAME,
+	url: import.meta.env.VITE_DATABASE_URL,
+// 	host: import.meta.env.VITE_DATABASE_HOST,
+//	user: import.meta.env.VITE_DATABASE_USERNAME,
+//	password: import.meta.env.VITE_DATABASE_PASSWORD,
+//	database: import.meta.env.VITE_DATABASE_NAME,
 });
 
 await client.connect();

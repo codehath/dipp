@@ -244,7 +244,7 @@
   }
 
   .logout {
-    color: var(--background-color);
+    color: var(--logout-color);
     font-size: 16px;
     font-weight: 500;
   }

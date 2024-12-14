@@ -16,8 +16,9 @@
     <style>
       :root {
         /* Light mode colors */
-        --background-color: #FFFFFF;
+        --background-gradient: url("/images/background-gradient.png");
         --text-color: #000000;
+        --logout-color: #ffffff;
         --border-color: #d5d5d5;
         --primary-blue: #168ace;
         --light-blue: #5db3e5;
@@ -34,8 +35,9 @@
 
       [data-theme="dark"] {
         /* Dark mode colors */
-        --background-color: #1a1a1a;
+        --background-gradient: url("/images/background-gradient-dark.png");
         --text-color: #ffffff;
+        --logout-color: #000000;
         --border-color: #404040;
         --primary-blue: #2196f3;
         --light-blue: #64b5f6;
@@ -59,7 +61,11 @@
       }
 
       html, body {
-        background-color: var(--background-color);
+        background-image: var(--background-gradient);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         color: var(--text-color);
       }
 
@@ -361,12 +367,6 @@
         .progress-container {
           max-width: 90%;
         }
-      }
-
-      /* Modified body background style */
-      body {
-        background-image: none;
-        background-color: var(--background-color);
       }
     </style>
     <script>

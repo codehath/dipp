@@ -24,7 +24,7 @@ import { drizzle } from "drizzle-orm/vercel-postgres";
 import { createPool } from "@vercel/postgres";
 
 const pool = createPool({
-	connectionString: process.env.VITE_DB_URL,
+  connectionString: process.env.VITE_DB_URL,
 });
 
 const db = drizzle(pool);

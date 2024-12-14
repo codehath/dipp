@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -60,7 +60,8 @@
         transition-duration: 200ms;
       }
 
-      html, body {
+      html,
+      body {
         background-image: var(--background-gradient);
         background-size: cover;
         background-position: center;
@@ -372,33 +373,37 @@
     <script>
       // Check for saved theme preference, otherwise use system preference
       const getPreferredTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem("theme");
         if (savedTheme) {
           return savedTheme;
         }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
       };
 
       // Apply theme to document
       const applyTheme = (theme) => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
       };
 
       // Initial theme setup
       applyTheme(getPreferredTheme());
 
       // Listen for system theme changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-          applyTheme(e.matches ? 'dark' : 'light');
-        }
-      });
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          if (!localStorage.getItem("theme")) {
+            applyTheme(e.matches ? "dark" : "light");
+          }
+        });
 
       // Expose toggle function globally
       window.toggleTheme = () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
         applyTheme(next);
       };
     </script>

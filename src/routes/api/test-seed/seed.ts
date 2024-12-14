@@ -88,7 +88,7 @@ export async function seed() {
   ];
   await db.insert(users).values(usersData);
   await db.execute(
-    `SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id) + 1, 1), false) FROM users;`
+    `SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id) + 1, 1), false) FROM users;`,
   );
 
   const dayDataData = [

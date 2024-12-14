@@ -31,42 +31,42 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "$lib/firebase/firebase";
 
 export const load = async ({ locals }) => {
-	// redirect user if not logged in as admin
-	if (locals.user[0].id !== 0) {
-		throw redirect(302, "/login");
-	}
-	return {
-        title: 'Admin'
-    };
+  // redirect user if not logged in as admin
+  if (locals.user[0].id !== 0) {
+    throw redirect(302, "/login");
+  }
+  return {
+    title: "Admin",
+  };
 };
 
 export const actions = {
-	add: async ({ request }) => {
-		const data = await request.formData();
-		const username = data.get("username");
-		const pass = data.get("password");
-		const startDate = data.get("startDate");
-		const meditation = data.get("meditation")?.toString();
+  add: async ({ request }) => {
+    const data = await request.formData();
+    const username = data.get("username");
+    const pass = data.get("password");
+    const startDate = data.get("startDate");
+    const meditation = data.get("meditation")?.toString();
 
-		console.log("Create FireBase user");
-		const email = username + "@dipp.com";
-		const userCredential = await createUserWithEmailAndPassword(
-			auth,
-			email,
-			pass
-		);
-		console.log("Created FB user");
-		console.log("Meditation = ", meditation);
+    console.log("Create FireBase user");
+    const email = username + "@dipp.com";
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      pass,
+    );
+    console.log("Created FB user");
+    console.log("Meditation = ", meditation);
 
-		// Add new entry to the users table
-		await db.insert(users).values({
-			username: username.toUpperCase(),
-			password: pass,
-			start_date: startDate,
-			meditation: !!meditation,
-			high_dosage: true,
-		});
+    // Add new entry to the users table
+    await db.insert(users).values({
+      username: username.toUpperCase(),
+      password: pass,
+      start_date: startDate,
+      meditation: !!meditation,
+      high_dosage: true,
+    });
 
-		console.log("Created PG user");
-	},
+    console.log("Created PG user");
+  },
 };

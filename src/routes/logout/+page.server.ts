@@ -3,18 +3,18 @@ import { signOut } from "firebase/auth";
 import { auth } from "$lib/firebase/firebase";
 
 export const load = async () => {
-	// we only use this endpoint for the api
-	// and don't need to see the page
-	throw redirect(302, "/");
+  // we only use this endpoint for the api
+  // and don't need to see the page
+  throw redirect(302, "/");
 };
 
 export const actions = {
-	default: async ({ cookies, locals }) => {
-		cookies.delete("userID", { path: "/" });
-		locals.user = null;
-		await signOut(auth);
+  default: async ({ cookies, locals }) => {
+    cookies.delete("userID", { path: "/" });
+    locals.user = null;
+    await signOut(auth);
 
-		// redirect the user
-		throw redirect(302, "/login");
-	},
+    // redirect the user
+    throw redirect(302, "/login");
+  },
 };

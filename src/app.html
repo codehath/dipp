@@ -14,6 +14,42 @@
     />
     %sveltekit.head%
     <style>
+      :root {
+        /* Light mode colors */
+        --background-color: #FFFFFF;
+        --text-color: #000000;
+        --border-color: #d5d5d5;
+        --primary-blue: #168ace;
+        --light-blue: #5db3e5;
+        --medium-blue: #639fc9;
+        --progress-bg: #fae3e4;
+        --progress-border: #d6c4be;
+        --pill-bg: #b5b5b5;
+        --form-bg: #f3f3f3;
+        --complete-green: #08d85e;
+        --disabled-bg: #ededed;
+        --placeholder-color: #888888;
+        --image-filter: none;
+      }
+
+      [data-theme="dark"] {
+        /* Dark mode colors */
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --border-color: #404040;
+        --primary-blue: #2196f3;
+        --light-blue: #64b5f6;
+        --medium-blue: #42a5f5;
+        --progress-bg: #2c2c2c;
+        --progress-border: #404040;
+        --pill-bg: #666666;
+        --form-bg: #2c2c2c;
+        --complete-green: #4caf50;
+        --disabled-bg: #333333;
+        --placeholder-color: #666666;
+        --image-filter: invert(1) hue-rotate(180deg);
+      }
+
       * {
         box-sizing: border-box;
         border-width: 2px;
@@ -21,9 +57,12 @@
         margin: 0px;
         transition-duration: 200ms;
       }
+
       html, body {
-        background-color: #FFFFFF;
+        background-color: var(--background-color);
+        color: var(--text-color);
       }
+
       html {
         font-family: Helvetica Neue;
         font-weight: 300;
@@ -32,11 +71,11 @@
       }
       a {
         text-decoration: none;
-        color: black;
+        color: var(--text-color);
       }
       a:focus,
       a:hover {
-        color: black;
+        color: var(--text-color);
         text-decoration: none;
       }
       h1,
@@ -46,9 +85,12 @@
         margin: 0;
       }
       button {
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
+        &:not(.logout button) {
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
+          color: var(--text-color);
+        }
       }
       button:disabled {
         display: none;
@@ -119,9 +161,9 @@
         width: 980px;
         max-width: 97%;
         border-radius: 20px;
-        border-color: #d6c4be;
+        border-color: var(--progress-border);
         border-style: solid;
-        background-color: #fae3e4;
+        background-color: var(--progress-bg);
         padding: 20px;
       }
       .progress-section {
@@ -148,7 +190,7 @@
       .progress-pill {
         width: 4.44px;
         height: 9.05px;
-        background: #b5b5b5;
+        background: var(--pill-bg);
         border-radius: 38px;
       }
       .modules-bar {
@@ -166,7 +208,7 @@
         width: 61px;
         max-width: 4vw;
         height: 4px;
-        background: #b5b5b5;
+        background: var(--pill-bg);
         border-radius: 10px;
       }
       .activity-bar {
@@ -182,7 +224,7 @@
       .activity-pill {
         width: 159px;
         height: 7px;
-        background: #b5b5b5;
+        background: var(--pill-bg);
         border-radius: 10px;
       }
 
@@ -220,16 +262,16 @@
         color: white;
       }
       .white {
-        background-color: white;
+        background-color: var(--background-color);
       }
       .light {
-        background-color: #5db3e5;
+        background-color: var(--light-blue);
       }
       .medium {
-        background-color: #639fc9;
+        background-color: var(--medium-blue);
       }
       .dark {
-        background-color: #168ace;
+        background-color: var(--primary-blue);
       }
       .pill {
         width: 113px;
@@ -237,9 +279,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: white;
+        background: var(--background-color);
         border-radius: 38px;
-        border: solid #168ace;
+        border: solid var(--primary-blue);
         font-weight: 500;
         word-wrap: break-word;
       }
@@ -249,7 +291,7 @@
         border: none;
         width: 101px;
         height: 39px;
-        background: #f3f3f3;
+        background: var(--form-bg);
       }
       .form-button input:hover {
         opacity: 0.7;
@@ -271,12 +313,12 @@
           margin-bottom: 20px;
         }
         .dashboard-colour {
-          background-color: #5db3e5;
-          border: solid #168ace;
+          background-color: var(--light-blue);
+          border: solid var(--primary-blue);
         }
         .module-colour {
-          background-color: white;
-          border: solid #d5d5d5;
+          background-color: var(--background-color);
+          border: solid var(--border-color);
         }
         .dashboard-contents {
           position: static;
@@ -323,11 +365,43 @@
 
       /* Modified body background style */
       body {
-        background-image: url("/images/background-gradient.png");
-        background-size: cover;
-        background-position: center;
+        background-image: none;
+        background-color: var(--background-color);
       }
     </style>
+    <script>
+      // Check for saved theme preference, otherwise use system preference
+      const getPreferredTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          return savedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      // Apply theme to document
+      const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      };
+
+      // Initial theme setup
+      applyTheme(getPreferredTheme());
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          applyTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+
+      // Expose toggle function globally
+      window.toggleTheme = () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      };
+    </script>
   </head>
   <body data-sveltekit-preload-data="hover">
     <div style="display: contents">%sveltekit.body%</div>

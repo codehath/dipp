@@ -181,7 +181,7 @@
     height: 394px;
     max-height: 100%;
     border-style: solid;
-    border-color: #168ace;
+    border-color: var(--primary-blue);
     border-radius: 20px;
   }
   .activity-contents {
@@ -209,7 +209,7 @@
     opacity: 0.5;
   }
   .complete {
-    background-color: #08d85e;
+    background-color: var(--complete-green);
     opacity: 0.5;
   }
   h1 {
@@ -228,7 +228,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border: solid black;
+    border: solid var(--text-color);
+    /* background-color: transparent; */
     border-radius: 50px;
     padding: 20px 20px 20px 40px;
     font-size: 14px;

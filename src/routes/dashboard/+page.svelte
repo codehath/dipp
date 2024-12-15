@@ -134,7 +134,7 @@
     flex-shrink: 0;
     border-radius: 38px;
     border-style: solid;
-    border-color: #168ace;
+    border-color: var(--primary-blue);
   }
   .module-pill-text {
     font-size: 14px;
@@ -156,7 +156,7 @@
     max-height: 80px;
     border-radius: 38px;
     border-style: solid;
-    border-color: #5db3e5;
+    border-color: var(--light-blue);
     display: flex;
     flex-direction: column;
     align-items: center;

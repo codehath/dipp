@@ -49,6 +49,31 @@
     activityButtons.mood += " complete";
     activityButtons.journal += " complete";
   }
+
+  // Activity configuration
+  const activities = [
+    {
+      title: user.meditation ? 'Meditate' : 'Music',
+      link: user.meditation ? '/listen/meditate' : '/listen/music',
+      buttonClass: 'meditate',
+      imageSrc: '/images/enter-button-1.svg',
+      condition: true // Always enabled
+    },
+    {
+      title: 'Mood',
+      link: '/mood',
+      buttonClass: 'mood',
+      imageSrc: '/images/enter-button-2.svg',
+      condition: userTasks.meditation
+    },
+    {
+      title: 'Journal',
+      link: '/journal',
+      buttonClass: 'journal',
+      imageSrc: '/images/enter-button-3.svg',
+      condition: userTasks.mood_id
+    }
+  ];
 </script>
 
 {#if user}
@@ -102,75 +127,30 @@
   </div>
 
   <div class="triplet-container padding">
-    <div class={activityButtons.meditate}>
-      {#if user.meditation}
-        <h1>Meditate</h1>
-        <a href="/listen/meditate">
+    {#each activities as {title, link, buttonClass, imageSrc, condition}}
+      <div class={activityButtons[buttonClass]}>
+        <h1>{title}</h1>
+        {#if condition}
+          <a href={link}>
+            <div class="activity-contents">
+              <img
+                class="enter-button"
+                src={imageSrc}
+                alt="enter-button"
+              />
+            </div>
+          </a>
+        {:else}
           <div class="activity-contents">
             <img
               class="enter-button"
-              src="/images/enter-button-1.svg"
+              src={imageSrc}
               alt="enter-button"
             />
           </div>
-        </a>
-      {:else}
-        <h1>Music</h1>
-        <a href="/listen/music">
-          <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-1.svg"
-              alt="enter-button"
-            />
-          </div>
-        </a>
-      {/if}
-    </div>
-    <div class={activityButtons.mood}>
-      <h1>Mood</h1>
-      {#if userTasks.meditation}
-        <a href="/mood">
-          <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-2.svg"
-              alt="enter-button"
-            />
-          </div>
-        </a>
-      {:else}
-        <div class="activity-contents">
-          <img
-            class="enter-button"
-            src="/images/enter-button-2.svg"
-            alt="enter-button"
-          />
-        </div>
-      {/if}
-    </div>
-    <div class={activityButtons.journal}>
-      <h1>Journal</h1>
-      {#if userTasks.mood_id}
-        <a href="/journal">
-          <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-3.svg"
-              alt="enter-button"
-            />
-          </div>
-        </a>
-      {:else}
-        <div class="activity-contents">
-          <img
-            class="enter-button"
-            src="/images/enter-button-3.svg"
-            alt="enter-button"
-          />
-        </div>
-      {/if}
-    </div>
+        {/if}
+      </div>
+    {/each}
   </div>
 {/if}
 
@@ -198,12 +178,6 @@
     max-width: 100%;
     width: 240px;
   }
-  @media (max-width: 768px) {
-    .activity {
-      margin: 4% 3%;
-    }
-  }
-
   .inactive {
     cursor: not-allowed;
     opacity: 0.5;
@@ -257,7 +231,17 @@
     object-fit: cover;
     width: 80px;
   }
+  
   @media (max-width: 768px) {
+    .dashboard-container {
+      background-color: var(--logout-color);  
+    }
+    .dashboard-image {
+      background-color: var(--logout-color);  
+    }
+    .activity {
+      margin: 4% 3%;
+    }
     .home-button {
       display: none;
     }

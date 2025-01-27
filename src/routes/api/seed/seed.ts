@@ -35,170 +35,149 @@ export async function seed() {
     {
       id: 1,
       title: "Initial Feelings",
-      prompt:
-        "Reflect on your initial feelings about your upcoming psychedelic experience.",
-      audio: "meditation-1.aac",
-      control: "control-1.aac",
+      prompt: "Reflect on your initial feelings about your upcoming psychedelic experience.",
+      audio: "meditation-1.m4a",
+      control: "control-1.m4a",
     },
     {
       id: 2,
       title: "Motivations",
-      prompt:
-        "Explore your motivations for choosing to have this psychedelic experience at this time.",
-      audio: "meditation-2.aac",
-      control: "control-2.aac",
+      prompt: "Explore your motivations for choosing to have this psychedelic experience at this time.",
+      audio: "meditation-2.m4a",
+      control: "control-2.m4a",
     },
     {
       id: 3,
       title: "Emotional Expectations",
-      prompt:
-        "What expectations do you have about the emotional depth of your upcoming experience?",
-      audio: "meditation-3.aac",
-      control: "control-3.aac",
+      prompt: "What expectations do you have about the emotional depth of your upcoming experience?",
+      audio: "meditation-3.m4a",
+      control: "control-3.m4a",
     },
     {
       id: 4,
       title: "Life Influence",
-      prompt:
-        "Consider how your past life experiences might influence this psychedelic journey.",
-      audio: "meditation-4.aac",
-      control: "control-4.aac",
+      prompt: "Consider how your past life experiences might influence this psychedelic journey.",
+      audio: "meditation-4.m4a",
+      control: "control-4.m4a",
     },
     {
       id: 5,
       title: "Psychedelic Understanding",
-      prompt:
-        "Describe your current understanding of the effects of psychedelics. What aspects intrigue you most?",
-      audio: "meditation-5.aac",
-      control: "control-5.aac",
+      prompt: "Describe your current understanding of the effects of psychedelics. What aspects intrigue you most?",
+      audio: "meditation-5.m4a",
+      control: "control-5.m4a",
     },
     {
       id: 6,
       title: "Physical Effects",
-      prompt:
-        "Reflect on your thoughts about how psilocybin might physically affect you during the experience.",
-      audio: "meditation-6.aac",
-      control: "control-6.aac",
+      prompt: "Reflect on your thoughts about how psilocybin might physically affect you during the experience.",
+      audio: "meditation-6.m4a",
+      control: "control-6.m4a",
     },
     {
       id: 7,
       title: "Unpredictability",
-      prompt:
-        "How do you feel about the unpredictable nature of psychedelic experiences?",
-      audio: "meditation-7.aac",
-      control: "control-7.aac",
+      prompt: "How do you feel about the unpredictable nature of psychedelic experiences?",
+      audio: "meditation-7.m4a",
+      control: "control-7.m4a",
     },
     {
       id: 8,
       title: "Safety Knowledge",
-      prompt:
-        "Assess your current knowledge about the safety of the substance and the environment for your experience.",
-      audio: "meditation-8.aac",
-      control: "control-8.aac",
+      prompt: "Assess your current knowledge about the safety of the substance and the environment for your experience.",
+      audio: "meditation-8.m4a",
+      control: "control-8.m4a",
     },
     {
       id: 9,
       title: "Personal Strengths",
-      prompt:
-        "What personal strengths do you believe will help you navigate this experience?",
-      audio: "meditation-9.aac",
-      control: "control-9.aac",
+      prompt: "What personal strengths do you believe will help you navigate this experience?",
+      audio: "meditation-9.m4a",
+      control: "control-9.m4a",
     },
     {
       id: 10,
       title: "Mindfulness Practices",
-      prompt:
-        "Describe any meditation, yoga, or mindfulness practices you've been exploring in preparation.",
-      audio: "meditation-10.aac",
-      control: "control-10.aac",
+      prompt: "Describe any meditation, yoga, or mindfulness practices you've been exploring in preparation.",
+      audio: "meditation-10.m4a",
+      control: "control-10.m4a",
     },
     {
       id: 11,
       title: "Journaling Reflection",
-      prompt:
-        "Reflect on your journaling experience so far. How has it contributed to your preparation?",
-      audio: "meditation-11.aac",
-      control: "control-11.aac",
+      prompt: "Reflect on your journaling experience so far. How has it contributed to your preparation?",
+      audio: "meditation-11.m4a",
+      control: "control-11.m4a",
     },
     {
       id: 12,
       title: "Mental Preparation",
-      prompt:
-        "What specific steps are you taking to mentally prepare for your psychedelic experience?",
-      audio: "meditation-12.aac",
-      control: "control-12.aac",
+      prompt: "What specific steps are you taking to mentally prepare for your psychedelic experience?",
+      audio: "meditation-12.m4a",
+      control: "control-12.m4a",
     },
     {
       id: 13,
       title: "Building Trust",
-      prompt:
-        "How are you building trust with those who will be present during your experience?",
-      audio: "meditation-13.aac",
-      control: "control-13.aac",
+      prompt: "How are you building trust with those who will be present during your experience?",
+      audio: "meditation-13.m4a",
+      control: "control-13.m4a",
     },
     {
       id: 14,
       title: "Insightful Conversations",
-      prompt:
-        "Describe any significant conversations you've had about your upcoming experience. What insights did you gain?",
-      audio: "meditation-14.aac",
-      control: "control-14.aac",
+      prompt: "Describe any significant conversations you've had about your upcoming experience. What insights did you gain?",
+      audio: "meditation-14.m4a",
+      control: "control-14.m4a",
     },
     {
       id: 15,
       title: "Involving Others",
-      prompt:
-        "How have you involved your close friends or family in your preparation process?",
-      audio: "meditation-15.aac",
-      control: "control-15.aac",
+      prompt: "How have you involved your close friends or family in your preparation process?",
+      audio: "meditation-15.m4a",
+      control: "control-15.m4a",
     },
     {
       id: 16,
       title: "Openness",
-      prompt:
-        "Reflect on your current level of openness to whatever may unfold during the experience.",
-      audio: "meditation-16.aac",
-      control: "control-16.aac",
+      prompt: "Reflect on your current level of openness to whatever may unfold during the experience.",
+      audio: "meditation-16.m4a",
+      control: "control-16.m4a",
     },
     {
       id: 17,
       title: "Surrender",
-      prompt:
-        "Explore your thoughts on the concept of 'surrender' in the context of your upcoming experience.",
-      audio: "meditation-17.aac",
-      control: "control-17.aac",
+      prompt: "Explore your thoughts on the concept of 'surrender' in the context of your upcoming experience.",
+      audio: "meditation-17.m4a",
+      control: "control-17.m4a",
     },
     {
       id: 18,
       title: "Challenging Moments",
-      prompt:
-        "What strategies are you considering for managing potentially challenging moments?",
-      audio: "meditation-18.aac",
-      control: "control-18.aac",
+      prompt: "What strategies are you considering for managing potentially challenging moments?",
+      audio: "meditation-18.m4a",
+      control: "control-18.m4a",
     },
     {
       id: 19,
       title: "Grounding Plan",
-      prompt:
-        "How do you plan to ground yourself if you feel overwhelmed during the experience?",
-      audio: "meditation-19.aac",
-      control: "control-19.aac",
+      prompt: "How do you plan to ground yourself if you feel overwhelmed during the experience?",
+      audio: "meditation-19.m4a",
+      control: "control-19.m4a",
     },
     {
       id: 20,
       title: "Desired Insights",
-      prompt:
-        "What potential changes or insights are you hoping this experience might bring?",
-      audio: "meditation-20.aac",
-      control: "control-20.aac",
+      prompt: "What potential changes or insights are you hoping this experience might bring?",
+      audio: "meditation-20.m4a",
+      control: "control-20.m4a",
     },
     {
       id: 21,
       title: "Final Intention",
-      prompt:
-        "Based on your journey of preparation, reflect on your final intention for the psychedelic experience.",
-      audio: "meditation-21.aac",
-      control: "control-21.aac",
+      prompt: "Based on your journey of preparation, reflect on your final intention for the psychedelic experience.",
+      audio: "meditation-21.m4a",
+      control: "control-21.m4a",
     },
   ];
 
@@ -208,8 +187,7 @@ export async function seed() {
     {
       id: 1,
       name: "Knowledge and Expectation",
-      description:
-        "Welcome to the first module of the DIPP course! This week, the aim is to lay a solid foundation of knowledge about psilocybin and what to expect during your psilocybin session.",
+      description: "Welcome to the first module of the DIPP course! This week, the aim is to lay a solid foundation of knowledge about psilocybin and what to expect during your psilocybin session.",
     },
     {
       id: 2,
@@ -233,10 +211,7 @@ export async function seed() {
       task: "Reading Task 1 - Psilocybin Basics",
       time: 15,
       goal: "The purpose of this task is to enhance your understanding of psilocybin, its origins, effects, and potential benefits and risks. By the end of this task, you should have a clear grasp of psilocybin’s role in mental health research, its neurobiological mechanisms, and considerations for its safe use.",
-      materials: [
-        "Text: 'Psilocybin Basics'",
-        "Notebook or digital note-taking tool",
-      ],
+      materials: ["Text: 'Psilocybin Basics'", "Notebook or digital note-taking tool"],
       instructions: [
         "Read the provided text on psilocybin.",
         "Take notes on key points that cover the basics of psilocybin, including its origins, brain effects, safety, and potential benefits.",
@@ -250,10 +225,7 @@ export async function seed() {
       task: "Reading Task 2 - Practical Concerns Regarding the Session",
       time: 15,
       goal: "This task aims to familiarise you with the practical aspects of participating in a psilocybin study, including how psilocybin will be administered, what to expect during the session, and how to navigate challenging moments. By the end of this task, you should have a clear understanding of the psilocybin session’s phases, safety measures, and the importance of integration post-experience.",
-      materials: [
-        "Text: 'Practical Concerns Regarding the Session'",
-        "Notebook or digital tool for note-taking",
-      ],
+      materials: ["Text: 'Practical Concerns Regarding the Session'", "Notebook or digital tool for note-taking"],
       instructions: [
         "Read the provided text on the practical concerns of a psilocybin session.",
         "Take notes on key topics such as psilocybin administration, phases of the experience, and guidance on handling challenging moments.",
@@ -267,11 +239,7 @@ export async function seed() {
       task: "4–6 Breathing Technique",
       time: 15,
       goal: "The aim of this task is to teach you the 4–6 Breathing Technique, a method designed to help you relax and reduce stress. By the end of this session, you will have practised a tool that can calm your mind and body, particularly useful for preparing yourself for intense experiences like a psychedelic session.",
-      materials: [
-        "A quiet, comfortable space",
-        "Optional: calming music or ambient sounds",
-        "Timer (optional)",
-      ],
+      materials: ["A quiet, comfortable space", "Optional: calming music or ambient sounds", "Timer (optional)"],
       instructions: [
         "Find a quiet, comfortable space to sit or lie down undisturbed. Optionally, you can play calming music or ambient sounds.",
         "Begin by inhaling through your nose for a count of 4, allowing your chest and abdomen to expand.",
@@ -302,11 +270,7 @@ export async function seed() {
       task: "Developing Coping Strategies",
       time: 30,
       goal: "The goal of this task is to help you create a personalised set of coping strategies for managing challenging moments during your psychedelic experience. By reflecting on past experiences and potential triggers, you will feel more prepared and confident during the session.",
-      materials: [
-        "Notebook or digital tool for journaling",
-        "The Resource Bank provided",
-        "A quiet, comfortable space for reflection",
-      ],
+      materials: ["Notebook or digital tool for journaling", "The Resource Bank provided", "A quiet, comfortable space for reflection"],
       instructions: [
         "This task is broken down into steps designed to guide you in developing effective strategies. Please follow each step carefully, reflecting on your personal experiences as you go.",
       ],
@@ -320,12 +284,7 @@ export async function seed() {
       task: "Planning Integration",
       time: 30,
       goal: "The goal of this task is to help you develop a practical and personalised plan for integrating your psychedelic experience into your daily life. Integration ensures that the insights and growth you experience during your session are transformed into meaningful, long-term changes. By creating a structured integration plan, you’ll feel more prepared to apply the lessons from your journey and continue your personal development in the weeks and months ahead.",
-      materials: [
-        "Notebook or digital tool for journaling",
-        "The Integration Resource Bank provided",
-        "Calendar or planner for scheduling activities",
-        "A quiet, comfortable space for reflection",
-      ],
+      materials: ["Notebook or digital tool for journaling", "The Integration Resource Bank provided", "Calendar or planner for scheduling activities", "A quiet, comfortable space for reflection"],
       instructions: [
         "This task is broken down into steps designed to guide you in developing an integration plan. Please follow each step carefully, reflecting on your personal experiences as you go.",
       ],

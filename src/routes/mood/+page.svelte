@@ -89,11 +89,13 @@
                 </div>
 
                 <!-- radio buttons for scale questions -->
-                <div class="radio-buttons">
+                <div class="radio-buttons" key={currentQuestionIndex}>
                   <span class="number">1</span>
-                  {#each Array(5).fill(undefined) as _, i (i)}
-                    <input type="radio" name="answer{currentQuestionIndex}" bind:group={question.answer} value={i + 1} on:change={handleRadioChange} />
-                  {/each}
+                  {#key currentQuestionIndex}
+                    {#each Array(5).fill(undefined) as _, i (i)}
+                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={handleRadioChange} />
+                    {/each}
+                  {/key}
                   <span class="number">5</span>
                 </div>
 
@@ -106,11 +108,13 @@
                 </div>
 
                 <!-- radio buttons for scale questions -->
-                <div class="radio-buttons">
+                <div class="radio-buttons" key={currentQuestionIndex}>
                   <span class="number">1</span>
-                  {#each Array(5).fill(undefined) as _, i (i)}
-                    <input type="radio" name="answer{currentQuestionIndex}" bind:group={question.answer} value={i + 1} on:change={() => currentQuestionIndex++} />
-                  {/each}
+                  {#key currentQuestionIndex}
+                    {#each Array(5).fill(undefined) as _, i (i)}
+                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+                    {/each}
+                  {/key}
                   <span class="number">5</span>
                 </div>
               {:else if question.type === "graph"}

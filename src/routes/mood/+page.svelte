@@ -19,6 +19,8 @@
   let currentQuestionIndex = 0;
   let answers;
   let questionnaireForm;
+  let renderKey = 0; // Add key for forcing re-render
+
   let questionnaire = [
     { type: "instructions", text: "Please indicate on a 5-point scale how much you agree with the following statements. '1' means 'Not at all' and '5' means 'Very much.'" },
     { type: "scale", statement: "In the last 15 minutes I paid attention to what I was doing, in the present moment.", answer: null },
@@ -45,10 +47,11 @@
     answers = retrieveAnswers(questionnaire);
   }
 
-  // Function to reset the current question's answer
+  // Function to reset the current question's answer and force re-render
   function resetCurrentAnswer() {
     if (questionnaire[currentQuestionIndex] && questionnaire[currentQuestionIndex].type === "scale") {
       questionnaire[currentQuestionIndex].answer = null;
+      renderKey++; // Force re-render
     }
   }
 
@@ -77,7 +80,7 @@
     if (completed) {
       setTimeout(() => {
         window.location.href = "/day";
-      }, 800); // Redirects after 2 seconds
+      }, 2000); // Redirects after 2 seconds
     }
   });
 
@@ -114,18 +117,18 @@
                   <p>{question.statement}</p>
                 </div>
 
-                <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
+                <form bind:this={questionnaireForm} action="{path}/?/update" method="post" autocomplete="off">
                   <input type="hidden" name="answers[]" value={JSON.stringify(answers)} />
 
                   <!-- radio buttons for scale questions -->
-                  <fieldset class="radio-buttons">
+                  <fieldset class="radio-buttons" key={renderKey}>
                     <legend class="visually-hidden">Scale from 1 to 5</legend>
                     <span class="number">1</span>
                     {#each Array(5).fill(undefined) as _, i (i)}
                       <label class="radio-label">
                         <input
                           type="radio"
-                          name="final-answer"
+                          name="final-answer-{currentQuestionIndex}"
                           value={i + 1}
                           checked={question.answer === i + 1}
                           on:change={() => {
@@ -145,14 +148,14 @@
                 </div>
 
                 <!-- radio buttons for scale questions -->
-                <fieldset class="radio-buttons">
+                <fieldset class="radio-buttons" key={renderKey}>
                   <legend class="visually-hidden">Scale from 1 to 5</legend>
                   <span class="number">1</span>
                   {#each Array(5).fill(undefined) as _, i (i)}
                     <label class="radio-label">
                       <input
                         type="radio"
-                        name="scale-answer"
+                        name="scale-answer-{currentQuestionIndex}"
                         value={i + 1}
                         checked={question.answer === i + 1}
                         on:change={() => {
@@ -238,35 +241,6 @@
     font-style: normal;
     font-weight: 300;
   }
-  .radio-buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    gap: 2px;
-  }
-  .radio-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
   /* Style the radio button when checked */
   input[type="radio"] {
     appearance: none;
@@ -302,8 +276,40 @@
     bottom: 0;
     border-radius: 50%;
   }
+
   input[type="radio"]:checked::after {
     background-color: #5db3e5;
+  }
+  .radio-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    gap: 2px;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
   .number {
     font-size: 12px;

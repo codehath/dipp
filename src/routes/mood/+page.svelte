@@ -28,26 +28,42 @@
     { type: "scale", statement: "In the last 15 minutes I was aware of what was going on in my mind.", answer: null },
     { type: "scale", statement: "In the last 15 minutes I could separate myself from my thoughts and feelings.", answer: null },
     { type: "scale", statement: "In the last 15 minutes I could actually see that I am not my thoughts.", answer: null },
-    // { type: 'graph', statement: "Please take a moment to reflect on your current mood. Where on the graph does your mood fit best?Think about how you're feeling right now. Look at the grid and find the spot that best matches your mood. The grid has two parts: From left to right, it shows how good or bad you feel. From bottom to top, it shows how much energy you have. For instance, if you're happy and full of energy, you'd click near the top right. If you're feeling just okay - not good or bad, not energetic or tired - click the middle of the grid. ", answer: {x: 0, y: 0} },
     {
       type: "graph",
       statement:
         "Where does your current mood fit on this graph? The horizontal axis shows how pleasant you feel (negative to positive), and the vertical axis shows your energy level (low to high). For example, feeling happy and energetic would be in the top right.",
-      answer: { x: 0, y: 0 },
+      answer: { x: 0, y: 0 }, // Initialize with default values
     },
-    // { type: 'scale', statement: 'On a scale of 1 to 5, where 1 means 'not accurate at all' and 5 means 'extremely accurate,' how accurately were you able to identify your current mood?', answer: null },
     { type: "scale", statement: "How accurately do you think you identified your current emotion? 1 (Not at all accurately) to 5 (Extremely accurately)", answer: null },
     { type: "final", text: "Thank you for completing the mood questionnaire. Please submit below." },
   ];
 
   // Retrieve the answers from the questionnaire
   $: {
-    answers = retrieveAnswers(questionnaire);
+    answers = questionnaire
+      .map((q) => {
+        if (q.type === "scale") {
+          return q.answer || 0; // Convert null to 0 for scale questions
+        } else if (q.type === "graph") {
+          return {
+            x: q.answer?.x || 0,
+            y: q.answer?.y || 0,
+          };
+        }
+        return null; // For instructions and final
+      })
+      .filter((a) => a !== null); // Remove null values
   }
 
   // Function to handle final radio change and consequent automatic form submission
   function handleRadioChange() {
-    questionnaireForm.submit();
+    // Ensure all required answers are present before submitting
+    const requiredAnswers = questionnaire.filter((q) => q.type === "scale" || q.type === "graph");
+    const allAnswered = requiredAnswers.every((q) => q.answer !== null);
+
+    if (allAnswered) {
+      questionnaireForm.submit();
+    }
   }
 
   // function to redirect on mount
@@ -74,12 +90,12 @@
         {:else}
           {#if currentQuestionIndex === 0}
             <div class="instructions-text">
-              <p>Welcome to your daily mood check-in. Please answer the following questions about your current state of mind.</p>
+              <p>{questionnaire[0].text}</p>
             </div>
             <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
           {:else if currentQuestionIndex === 1}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I noticed physical sensations come and go.</p>
+              <p>{questionnaire[1].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -90,7 +106,7 @@
             </div>
           {:else if currentQuestionIndex === 2}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I was aware of what was going on in my body.</p>
+              <p>{questionnaire[2].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -101,7 +117,7 @@
             </div>
           {:else if currentQuestionIndex === 3}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I noticed pleasant and unpleasant thoughts and emotions.</p>
+              <p>{questionnaire[3].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -112,7 +128,7 @@
             </div>
           {:else if currentQuestionIndex === 4}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I was aware of what was going on in my mind.</p>
+              <p>{questionnaire[4].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -123,7 +139,7 @@
             </div>
           {:else if currentQuestionIndex === 5}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I could separate myself from my thoughts and feelings.</p>
+              <p>{questionnaire[5].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -134,7 +150,7 @@
             </div>
           {:else if currentQuestionIndex === 6}
             <div class="questionnaire-text">
-              <p>In the last 15 minutes I could actually see that I am not my thoughts.</p>
+              <p>{questionnaire[6].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -145,36 +161,35 @@
             </div>
           {:else if currentQuestionIndex === 7}
             <div class="questionnaire-text">
-              <p>
-                Where does your current mood fit on this graph? The horizontal axis shows how pleasant you feel (negative to positive), and the vertical axis shows your energy level (low to high). For
-                example, feeling happy and energetic would be in the top right.
-              </p>
+              <p>{questionnaire[7].statement}</p>
             </div>
-            <div class="chart">
-              <Graph points={[questionnaire[7].answer]} />
-              <div class="axis-labels">
-                <span class="x-label">Pleasantness</span>
-                <span class="y-label">Energy</span>
+            <div class="mood-input-container">
+              <div class="chart">
+                <Graph points={[questionnaire[8].answer || { x: 0, y: 0 }]} />
+                <div class="axis-labels">
+                  <span class="x-label">Pleasantness</span>
+                  <span class="y-label">Energy</span>
+                </div>
               </div>
-            </div>
-            <div class="answer-input">
-              <p class="graph-text">Pleasantness</p>
-              <div class="slider-container">
-                <span class="number">Negative</span>
-                <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[7].answer.x} class="slider" id="pleasantnessSlider" />
-                <span class="number">Positive</span>
-              </div>
-              <p class="graph-text">Energy</p>
-              <div class="slider-container">
-                <span class="number">Low</span>
-                <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[7].answer.y} class="slider" id="energySlider" />
-                <span class="number">High</span>
+              <div class="answer-input">
+                <p class="graph-text">Pleasantness</p>
+                <div class="slider-container">
+                  <span class="number">Negative</span>
+                  <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[8].answer.x} class="slider" id="pleasantnessSlider" />
+                  <span class="number">Positive</span>
+                </div>
+                <p class="graph-text">Energy</p>
+                <div class="slider-container">
+                  <span class="number">Low</span>
+                  <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[8].answer.y} class="slider" id="energySlider" />
+                  <span class="number">High</span>
+                </div>
               </div>
             </div>
             <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
           {:else if currentQuestionIndex === 8}
             <div class="questionnaire-text">
-              <p>How accurately do you think you identified your current emotion?</p>
+              <p>{questionnaire[8].statement}</p>
             </div>
             <div class="radio-buttons">
               <span class="number">1</span>
@@ -184,7 +199,15 @@
               <span class="number">5</span>
             </div>
             <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
-              <input type="hidden" name="answers[]" value={answers} />
+              <input type="hidden" name="answers" value={JSON.stringify(answers)} />
+            </form>
+          {:else if currentQuestionIndex === 9}
+            <div class="instructions-text">
+              <p>{questionnaire[9].text}</p>
+            </div>
+            <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
+              <input type="hidden" name="answers" value={JSON.stringify(answers)} />
+              <button class="form-button" type="submit">Submit</button>
             </form>
           {/if}
           <!-- <div class="button-container">
@@ -206,6 +229,7 @@
 
 <style>
   .container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -246,6 +270,7 @@
     background-color: #5db3e5;
   }
   .radio-buttons {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
@@ -255,10 +280,24 @@
     color: white;
     margin: 0 10px;
   }
+  .mood-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+  }
+
   .chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 400px;
     position: relative;
+    margin: 20px 0;
+    aspect-ratio: 1;
   }
 
   .axis-labels {
@@ -298,44 +337,60 @@
   }
 
   .answer-input {
+    display: flex;
     width: 100%;
+    max-width: 400px;
     margin-bottom: 20px;
     flex-direction: column;
+    align-items: center;
   }
   .slider-container {
+    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    margin: 10px;
+    justify-content: space-between;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 300px;
+    padding: 0 10px;
+  }
+
+  .slider-container .number {
+    flex: 0 0 50px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    margin: 0;
   }
 
   .slider {
-    -webkit-appearance: none; /* Override default appearance */
-    width: 50%; /* Full-width */
-    height: 10px; /* Specified height */
-    background: white; /* Grey background */
+    -webkit-appearance: none;
+    flex: 1;
+    height: 10px;
+    background: white;
     border-radius: 20px;
     outline: none;
-    -webkit-transition: 0.2s; /*  0.2 seconds transition on hover */
+    -webkit-transition: 0.2s;
     transition: opacity 0.2s;
+    margin: 0 10px;
   }
 
   .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default appearance */
+    -webkit-appearance: none;
     appearance: none;
-    width: 20px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: #5db3e5; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 50%; /* Round slider handle */
+    width: 20px;
+    height: 20px;
+    background: #5db3e5;
+    cursor: pointer;
+    border-radius: 50%;
     border: white solid;
   }
 
   .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #5db3e5; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 50%; /* Round slider handle */
+    width: 25px;
+    height: 25px;
+    background: #5db3e5;
+    cursor: pointer;
+    border-radius: 50%;
   }
 </style>

@@ -19,8 +19,6 @@
   let currentQuestionIndex = 0;
   let answers;
   let questionnaireForm;
-  let renderKey = 0; // Add key for forcing re-render
-
   let questionnaire = [
     { type: "instructions", text: "Please indicate on a 5-point scale how much you agree with the following statements. '1' means 'Not at all' and '5' means 'Very much.'" },
     { type: "scale", statement: "In the last 15 minutes I paid attention to what I was doing, in the present moment.", answer: null },
@@ -47,31 +45,9 @@
     answers = retrieveAnswers(questionnaire);
   }
 
-  // Function to reset the current question's answer and force re-render
-  function resetCurrentAnswer() {
-    if (questionnaire[currentQuestionIndex] && questionnaire[currentQuestionIndex].type === "scale") {
-      questionnaire[currentQuestionIndex].answer = null;
-      renderKey++; // Force re-render
-    }
-  }
-
-  // Modified function to handle question change
-  function goToNextQuestion() {
-    currentQuestionIndex++;
-    resetCurrentAnswer();
-  }
-
-  // Modified function to handle final submission
+  // Function to handle final radio change and consequent automatic form submission
   function handleRadioChange() {
-    // Update answers before submitting
-    answers = retrieveAnswers(questionnaire);
-    setTimeout(() => {
-      if (questionnaireForm) {
-        questionnaireForm.submit();
-        // Set completed to true after submission
-        completed = true;
-      }
-    }, 0);
+    questionnaireForm.submit();
   }
 
   // function to redirect on mount
@@ -83,11 +59,6 @@
       }, 2000); // Redirects after 2 seconds
     }
   });
-
-  // Handle form action result
-  $: if (form?.success) {
-    completed = true;
-  }
 </script>
 
 {#if user}
@@ -117,30 +88,19 @@
                   <p>{question.statement}</p>
                 </div>
 
-                <form bind:this={questionnaireForm} action="{path}/?/update" method="post" autocomplete="off">
-                  <input type="hidden" name="answers[]" value={JSON.stringify(answers)} />
-
-                  <!-- radio buttons for scale questions -->
-                  <fieldset class="radio-buttons" key={renderKey}>
-                    <legend class="visually-hidden">Scale from 1 to 5</legend>
-                    <span class="number">1</span>
+                <!-- radio buttons for scale questions -->
+                <div class="radio-buttons" key={currentQuestionIndex}>
+                  <span class="number">1</span>
+                  {#key currentQuestionIndex}
                     {#each Array(5).fill(undefined) as _, i (i)}
-                      <label class="radio-label">
-                        <input
-                          type="radio"
-                          name="final-answer-{currentQuestionIndex}"
-                          value={i + 1}
-                          checked={question.answer === i + 1}
-                          on:change={() => {
-                            question.answer = i + 1;
-                            handleRadioChange();
-                          }}
-                        />
-                        <span class="visually-hidden">{i + 1}</span>
-                      </label>
+                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={handleRadioChange} />
                     {/each}
-                    <span class="number">5</span>
-                  </fieldset>
+                  {/key}
+                  <span class="number">5</span>
+                </div>
+
+                <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
+                  <input type="hidden" name="answers[]" value={answers} />
                 </form>
               {:else if question.type === "scale"}
                 <div class="questionnaire-text">
@@ -148,26 +108,15 @@
                 </div>
 
                 <!-- radio buttons for scale questions -->
-                <fieldset class="radio-buttons" key={renderKey}>
-                  <legend class="visually-hidden">Scale from 1 to 5</legend>
+                <div class="radio-buttons" key={currentQuestionIndex}>
                   <span class="number">1</span>
-                  {#each Array(5).fill(undefined) as _, i (i)}
-                    <label class="radio-label">
-                      <input
-                        type="radio"
-                        name="scale-answer-{currentQuestionIndex}"
-                        value={i + 1}
-                        checked={question.answer === i + 1}
-                        on:change={() => {
-                          question.answer = i + 1;
-                          goToNextQuestion();
-                        }}
-                      />
-                      <span class="visually-hidden">{i + 1}</span>
-                    </label>
-                  {/each}
+                  {#key currentQuestionIndex}
+                    {#each Array(5).fill(undefined) as _, i (i)}
+                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+                    {/each}
+                  {/key}
                   <span class="number">5</span>
-                </fieldset>
+                </div>
               {:else if question.type === "graph"}
                 <div class="questionnaire-text">
                   <p>{question.statement}</p>
@@ -244,20 +193,15 @@
   /* Style the radio button when checked */
   input[type="radio"] {
     appearance: none;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    min-height: 16px;
-    max-width: 16px;
-    max-height: 16px;
+    width: 20px;
+    height: 20px;
+    max-width: 5vw;
+    max-height: 5vw;
     border: solid 1px white;
     border-radius: 50%;
     background-color: white;
-    margin: 4px;
-    padding: 0;
+    margin: 10px;
     cursor: pointer;
-    position: relative;
   }
   input[type="radio"]:checked {
     background-color: #5db3e5;
@@ -265,57 +209,15 @@
   input[type="radio"]:hover {
     background-color: #5db3e5;
   }
-  /* Force iOS to use our custom styling */
-  input[type="radio"]::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-  }
-
-  input[type="radio"]:checked::after {
-    background-color: #5db3e5;
-  }
   .radio-buttons {
-    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    border: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    gap: 2px;
-  }
-
-  .radio-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    justify-content: space-around;
   }
   .number {
     font-size: 12px;
     color: white;
-    margin: 0 4px;
-    white-space: nowrap;
+    margin: 0 10px;
   }
   .chart {
     width: 100%;

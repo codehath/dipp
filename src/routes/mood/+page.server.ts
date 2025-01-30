@@ -19,11 +19,7 @@ export const actions = {
 
     // Get the question answers from the form data
     let answers = formData.get("answers[]");
-    try {
-      answers = JSON.parse(answers);
-    } catch (e) {
-      return fail(400, { message: "Error parsing questionnaire answers" });
-    }
+    answers = answers.split(" ,");
 
     // Update message if array is empty/null or has less than 9 elements
     if (!answers || answers.length !== 9) {
@@ -39,17 +35,10 @@ export const actions = {
     for (let i = 0; i < 9; i++) {
       updateFields["q" + (i + 1)] = answers[i];
     }
-
-    try {
-      // create new mood entry with answers from form
-      let moodQuery = await db.insert(mood).values(updateFields).returning();
-      // update dailyTasks entry for today with corresponding mood id
-      await db.update(dailyTasks).set({ mood_id: moodQuery[0].id }).where(eq(dailyTasks.id, userTasksQuery[0].id));
-
-      return { success: true };
-    } catch (e) {
-      return fail(500, { message: "Error saving questionnaire" });
-    }
+    // create new mood entry with answers from form
+    let moodQuery = await db.insert(mood).values(updateFields).returning();
+    // update dailyTasks entry for today with corresponding mood id
+    await db.update(dailyTasks).set({ mood_id: moodQuery[0].id }).where(eq(dailyTasks.id, userTasksQuery[0].id));
   },
 };
 

@@ -72,85 +72,121 @@
             <p>Mood questionnaire completed for today.</p>
           </div>
         {:else}
-          <!-- loop through each question in questionnaire -->
-          {#each questionnaire as question, index (index)}
-            <!-- only display current question -->
-            {#if index === currentQuestionIndex}
-              <!-- check question type and display accordingly -->
-              {#if question.type === "instructions"}
-                <div class="instructions-text">
-                  <p>{question.text}</p>
-                </div>
-                <!-- next button after instructions -->
-                <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
-              {:else if currentQuestionIndex === questionnaire.length - 2}
-                <div class="questionnaire-text">
-                  <p>{question.statement}</p>
-                </div>
-
-                <!-- radio buttons for scale questions -->
-                <div class="radio-buttons" key={currentQuestionIndex}>
-                  <span class="number">1</span>
-                  {#key currentQuestionIndex}
-                    {#each Array(5).fill(undefined) as _, i (i)}
-                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={handleRadioChange} />
-                    {/each}
-                  {/key}
-                  <span class="number">5</span>
-                </div>
-
-                <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
-                  <input type="hidden" name="answers[]" value={answers} />
-                </form>
-              {:else if question.type === "scale"}
-                <div class="questionnaire-text">
-                  <p>{question.statement}</p>
-                </div>
-
-                <!-- radio buttons for scale questions -->
-                <div class="radio-buttons" key={currentQuestionIndex}>
-                  <span class="number">1</span>
-                  {#key currentQuestionIndex}
-                    {#each Array(5).fill(undefined) as _, i (i)}
-                      <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={() => currentQuestionIndex++} />
-                    {/each}
-                  {/key}
-                  <span class="number">5</span>
-                </div>
-              {:else if question.type === "graph"}
-                <div class="questionnaire-text">
-                  <p>{question.statement}</p>
-                </div>
-
-                <!-- graph -->
-                <div class="chart">
-                  <Graph points={[question.answer]} />
-                  <div class="axis-labels">
-                    <span class="x-label">Pleasantness</span>
-                    <span class="y-label">Energy</span>
-                  </div>
-                </div>
-
-                <div class="answer-input">
-                  <p class="graph-text">Pleasantness</p>
-                  <div class="slider-container">
-                    <span class="number">Negative</span>
-                    <input type="range" min="-5" max="5" step="1" bind:value={question.answer.x} class="slider" id="pleasantnessSlider" />
-                    <span class="number">Positive</span>
-                  </div>
-                  <p class="graph-text">Energy</p>
-                  <div class="slider-container">
-                    <span class="number">Low</span>
-                    <input type="range" min="-5" max="5" step="1" bind:value={question.answer.y} class="slider" id="energySlider" />
-                    <span class="number">High</span>
-                  </div>
-                </div>
-
-                <!-- next button after entering co-ordinates -->
-                <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
-              {/if}
-            {/if}
-          {/each}
+          {#if currentQuestionIndex === 0}
+            <div class="instructions-text">
+              <p>Welcome to your daily mood check-in. Please answer the following questions about your current state of mind.</p>
+            </div>
+            <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
+          {:else if currentQuestionIndex === 1}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I noticed physical sensations come and go.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-1" bind:group={questionnaire[1].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 2}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I was aware of what was going on in my body.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-2" bind:group={questionnaire[2].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 3}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I noticed pleasant and unpleasant thoughts and emotions.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-3" bind:group={questionnaire[3].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 4}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I was aware of what was going on in my mind.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-4" bind:group={questionnaire[4].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 5}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I could separate myself from my thoughts and feelings.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-5" bind:group={questionnaire[5].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 6}
+            <div class="questionnaire-text">
+              <p>In the last 15 minutes I could actually see that I am not my thoughts.</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-6" bind:group={questionnaire[6].answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+          {:else if currentQuestionIndex === 7}
+            <div class="questionnaire-text">
+              <p>
+                Where does your current mood fit on this graph? The horizontal axis shows how pleasant you feel (negative to positive), and the vertical axis shows your energy level (low to high). For
+                example, feeling happy and energetic would be in the top right.
+              </p>
+            </div>
+            <div class="chart">
+              <Graph points={[questionnaire[7].answer]} />
+              <div class="axis-labels">
+                <span class="x-label">Pleasantness</span>
+                <span class="y-label">Energy</span>
+              </div>
+            </div>
+            <div class="answer-input">
+              <p class="graph-text">Pleasantness</p>
+              <div class="slider-container">
+                <span class="number">Negative</span>
+                <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[7].answer.x} class="slider" id="pleasantnessSlider" />
+                <span class="number">Positive</span>
+              </div>
+              <p class="graph-text">Energy</p>
+              <div class="slider-container">
+                <span class="number">Low</span>
+                <input type="range" min="-5" max="5" step="1" bind:value={questionnaire[7].answer.y} class="slider" id="energySlider" />
+                <span class="number">High</span>
+              </div>
+            </div>
+            <button class="form-button" on:click={() => currentQuestionIndex++}>Next</button>
+          {:else if currentQuestionIndex === 8}
+            <div class="questionnaire-text">
+              <p>How accurately do you think you identified your current emotion?</p>
+            </div>
+            <div class="radio-buttons">
+              <span class="number">1</span>
+              {#each Array(5).fill(undefined) as _, i (i)}
+                <input type="radio" name="answer-8" bind:group={questionnaire[8].answer} value={i + 1} on:change={handleRadioChange} />
+              {/each}
+              <span class="number">5</span>
+            </div>
+            <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
+              <input type="hidden" name="answers[]" value={answers} />
+            </form>
+          {/if}
           <!-- <div class="button-container">
           {#if currentQuestionIndex === 0}
             <button on:click={() => currentQuestionIndex++}>Next</button>

@@ -177,10 +177,11 @@
   .question-text p {
     color: #fff;
     text-align: left;
-    font-size: 22px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 300;
     padding: 0 1rem;
+    line-height: 1.4;
   }
   .question-number {
     font-weight: 500;
@@ -232,24 +233,20 @@
     flex-direction: column;
     align-items: center;
     max-width: 600px;
-    padding: 0 20px;
   }
   .chart {
     width: 100%;
     max-width: 400px;
     position: relative;
-    margin: 1rem auto 3.5rem;
+    margin: 1rem auto 3rem;
     aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   .axis-labels {
     position: absolute;
-    width: calc(100% + 80px);
+    width: 100%;
     height: 100%;
     top: 0;
-    left: -40px;
+    left: 0;
     pointer-events: none;
   }
   .x-label {
@@ -263,16 +260,15 @@
   .y-label {
     position: absolute;
     top: 50%;
-    left: 0;
+    left: -40px;
     transform: translateY(-50%) rotate(-90deg);
     color: white;
     font-size: 14px;
-    width: max-content;
   }
   .answer-input {
     width: 100%;
     max-width: 400px;
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -360,7 +356,7 @@
       padding: 1rem;
     }
     .question-text p {
-      font-size: 18px;
+      font-size: 16px;
     }
     .radio-buttons {
       padding: 0.5rem 1rem;
@@ -380,22 +376,18 @@
       font-size: 12px;
       min-width: 50px;
     }
-    .graph-section {
-      padding: 0 10px;
-    }
     .chart {
-      margin: 1rem auto 3rem;
-    }
-    .axis-labels {
-      width: calc(100% + 60px);
-      left: -30px;
+      margin: 1rem auto 2.5rem;
     }
     .x-label,
     .y-label {
       font-size: 12px;
     }
+    .x-label {
+      bottom: -20px;
+    }
     .y-label {
-      left: -30px;
+      left: -25px;
     }
     .label-text {
       font-size: 16px;

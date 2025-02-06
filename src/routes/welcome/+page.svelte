@@ -1,4 +1,5 @@
 <script>
+  import CircularButton from "../../components/CircularButton.svelte";
 </script>
 
 <svelte:head>
@@ -6,24 +7,13 @@
 </svelte:head>
 
 <div class="pop-up white">
-  <a class="circular-button back" href="/dashboard"
-    ><img src="/images/cross-circle-button.svg" alt="back button" /></a
-  >
+  <CircularButton href="/dashboard" position="close" size={30} />
   <div class="pop-up-content left">
-    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">
-      Your preparation phase hasn't started yet
-    </h1>
-    <p>
-      We're excited to have you join us for this Digital Intervention for
-      Psychedelic Preparedness (DIPP), please read the about section to learn
-      more about the trial.
-    </p>
+    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">Your preparation phase hasn't started yet</h1>
+    <p>We're excited to have you join us for this Digital Intervention for Psychedelic Preparedness (DIPP), please read the about section to learn more about the trial.</p>
 
     <p>
-      If you have any questions, don't hesitate to email <a
-        href="mailto:rosalind.mcalpine.18@ucl.ac.uk"
-        >rosalind.mcalpine.18@ucl.ac.uk</a
-      >.
+      If you have any questions, don't hesitate to email <a href="mailto:rosalind.mcalpine.18@ucl.ac.uk">rosalind.mcalpine.18@ucl.ac.uk</a>.
     </p>
   </div>
 </div>
@@ -36,8 +26,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
     max-width: 800px;
     margin: 0 auto;
@@ -136,8 +125,7 @@
     margin: 2rem 0;
     padding: 1.5rem;
     border-top: 1px solid #e5e5e5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     display: block;
     position: relative;
   }

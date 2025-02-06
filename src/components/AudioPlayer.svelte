@@ -4,7 +4,7 @@
   export let medGroup;
 
   let audioPlayer;
-  let path = "meditate";
+  let path = medGroup ? "meditate" : "music";
   let isPlaying = false;
   let currentTime = 0;
   let duration = 0;
@@ -62,8 +62,8 @@
           message = "Thank you for completing today's listening session!";
         }
         setTimeout(() => {
-          window.location.href = "/day";
-        }, 2000);
+          window.location.href = "/mood";
+        }, 800);
       })
       .catch((error) => {
         console.error("Error submitting task:", error);
@@ -86,7 +86,11 @@
 
 <h1 class="title">{message}</h1>
 <button class="play-button" on:click={togglePlayback}>
-  <h1>{isPlaying ? "Pause" : "Play"}</h1>
+  {#if isPlaying}
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="#ffffff" d="M14 19V5h4v14zm-8 0V5h4v14z" /></svg>
+  {:else}
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="#ffffff" d="M8 19V5l11 7z" /></svg>
+  {/if}
 </button>
 <div class="timer-content">
   <div class="timer-text">
@@ -116,8 +120,17 @@
     border-radius: 50%;
     border-style: solid;
     border-color: #fff;
-    padding: 50px 0;
     margin: 0 auto; /* Center the button */
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .play-button:hover {
+    transform: scale(1.05);
+  }
+  .play-button:active {
+    transform: scale(0.95);
   }
   .timer-content {
     flex-direction: row;

@@ -3,14 +3,14 @@
 </script>
 
 <div class="landing-content">
-    <div class="landing-logo">
-      <img src="/images/landing-logo.svg" alt="logo" />
+  <div class="landing-logo">
+    <img src="/images/landing-logo.svg" alt="logo" />
+  </div>
+  <a href="/login">
+    <div class="pill">
+      <p>Enter</p>
     </div>
-    <a href="/login">
-        <div class="pill">
-          <p>Enter</p>
-        </div>
-    </a>
+  </a>
 </div>
 
 <style>

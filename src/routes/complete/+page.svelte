@@ -1,4 +1,5 @@
 <script>
+  import CircularButton from "../../components/CircularButton.svelte";
 </script>
 
 <svelte:head>
@@ -6,28 +7,15 @@
 </svelte:head>
 
 <div class="pop-up white">
-  <a class="circular-button back" href="/dashboard"
-    ><img src="/images/cross-circle-button.svg" alt="back button" /></a
-  >
+  <CircularButton href="/dashboard" position="close" size={30} />
   <div class="pop-up-content left">
-    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">
-      Congratulations on Completing the Preparation Phase of the Trial!
-    </h1>
+    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">Congratulations on Completing the Preparation Phase of the Trial!</h1>
+    <p>Well done for completing your 21-day preparation course! You've put in the time and effort to cultivate important skills that will support you in your upcoming psilocybin session.</p>
     <p>
-      Well done for completing your 21-day preparation course! You've put in the
-      time and effort to cultivate important skills that will support you in
-      your upcoming psilocybin session.
+      Your next step is the psilocybin session, which is just around the corner- likely tomorrow or in the next few days at UCL. Please take some time to rest, reflect, and prepare yourself mentally.
+      If you have any final questions or thoughts, don't hesitate to reach out to the research team.
     </p>
-    <p>
-      Your next step is the psilocybin session, which is just around the corner-
-      likely tomorrow or in the next few days at UCL. Please take some time to
-      rest, reflect, and prepare yourself mentally. If you have any final
-      questions or thoughts, don’t hesitate to reach out to the research team.
-    </p>
-    <p>
-      We’re looking forward to seeing you for this next phase of your journey.
-      Take care and see you very soon!
-    </p>
+    <p>We're looking forward to seeing you for this next phase of your journey. Take care and see you very soon!</p>
     <!-- <p>You've completed the Digital Intervention for Psychedelic Preparedness (DIPP), it's time for your dosing to begin. </p>
 		
 		<p>If you have any questions, don't hesitate to email <a href="mailto:rosalind.mcalpine.18@ucl.ac.uk">rosalind.mcalpine.18@ucl.ac.uk</a>.</p> -->
@@ -42,8 +30,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
     max-width: 800px;
     margin: 0 auto;

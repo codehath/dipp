@@ -62,7 +62,7 @@
           message = "Thank you for completing today's listening session!";
         }
         setTimeout(() => {
-          window.location.href = "/day";
+          window.location.href = "/mood";
         }, 800);
       })
       .catch((error) => {

@@ -61,7 +61,7 @@
     // redirects to day page if questionnaire completed
     if (completed) {
       setTimeout(() => {
-        window.location.href = "/day";
+        window.location.href = "/journal";
       }, 800); // Redirects after 800ms
     }
   });

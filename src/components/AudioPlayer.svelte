@@ -4,7 +4,7 @@
   export let medGroup;
 
   let audioPlayer;
-  let path = "meditate";
+  let path = medGroup ? "meditate" : "music";
   let isPlaying = false;
   let currentTime = 0;
   let duration = 0;

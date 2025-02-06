@@ -20,7 +20,7 @@
   let answers;
   let questionnaireForm;
   let questionnaire = [
-    { type: "instructions", text: "Please indicate on a 5-point scale how much you agree with the following statements. ‘1’ means “Not at all” and ‘5’ means “Very much”." },
+    { type: "instructions", text: "Please indicate on a 5-point scale how much you agree with the following statements. '1' means 'Not at all' and '5' means 'Very much.'" },
     { type: "scale", statement: "In the last 15 minutes I paid attention to what I was doing, in the present moment.", answer: null },
     { type: "scale", statement: "In the last 15 minutes I noticed physical sensations come and go.", answer: null },
     { type: "scale", statement: "In the last 15 minutes I was aware of what was going on in my body.", answer: null },
@@ -35,7 +35,7 @@
         "Where does your current mood fit on this graph? The horizontal axis shows how pleasant you feel (negative to positive), and the vertical axis shows your energy level (low to high). For example, feeling happy and energetic would be in the top right.",
       answer: { x: 0, y: 0 },
     },
-    // { type: 'scale', statement: 'On a scale of 1 to 5, where 1 means \'not accurate at all\' and 5 means \'extremely accurate,\' how accurately were you able to identify your current mood?', answer: null },
+    // { type: 'scale', statement: 'On a scale of 1 to 5, where 1 means 'not accurate at all' and 5 means 'extremely accurate,' how accurately were you able to identify your current mood?', answer: null },
     { type: "scale", statement: "How accurately do you think you identified your current emotion? 1 (Not at all accurately) to 5 (Extremely accurately)", answer: null },
     { type: "final", text: "Thank you for completing the mood questionnaire. Please submit below." },
   ];
@@ -88,29 +88,40 @@
                   <p>{question.statement}</p>
                 </div>
 
-                <!-- radio buttons for scale questions -->
+                <!-- buttons styled like radio buttons -->
                 <div class="radio-buttons">
                   <span class="number">1</span>
                   {#each Array(5).fill(undefined) as _, i (i)}
-                    <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={handleRadioChange} />
+                    <button
+                      class="radio-button {question.answer === i + 1 ? 'selected' : ''}"
+                      on:click={() => {
+                        question.answer = i + 1;
+                        handleRadioChange();
+                      }}
+                    />
                   {/each}
                   <span class="number">5</span>
                 </div>
 
                 <form bind:this={questionnaireForm} action="{path}/?/update" method="post">
                   <input type="hidden" name="answers[]" value={answers} />
-                  <!-- <input type="submit" value="Submit" /> -->
                 </form>
               {:else if question.type === "scale"}
                 <div class="questionnaire-text">
                   <p>{question.statement}</p>
                 </div>
 
-                <!-- radio buttons for scale questions -->
+                <!-- buttons styled like radio buttons -->
                 <div class="radio-buttons">
                   <span class="number">1</span>
                   {#each Array(5).fill(undefined) as _, i (i)}
-                    <input type="radio" name="answer" bind:group={question.answer} value={i + 1} on:change={() => currentQuestionIndex++} />
+                    <button
+                      class="radio-button {question.answer === i + 1 ? 'selected' : ''}"
+                      on:click={() => {
+                        question.answer = i + 1;
+                        currentQuestionIndex++;
+                      }}
+                    />
                   {/each}
                   <span class="number">5</span>
                 </div>
@@ -187,9 +198,8 @@
     font-style: normal;
     font-weight: 300;
   }
-  /* Style the radio button when checked */
-  input[type="radio"] {
-    appearance: none;
+  /* Replace radio button styles with button styles */
+  .radio-button {
     width: 20px;
     height: 20px;
     max-width: 5vw;
@@ -199,11 +209,12 @@
     background-color: white;
     margin: 10px;
     cursor: pointer;
+    padding: 0;
   }
-  input[type="radio"]:checked {
+  .radio-button.selected {
     background-color: #5db3e5;
   }
-  input[type="radio"]:hover {
+  .radio-button:hover {
     background-color: #5db3e5;
   }
   .radio-buttons {

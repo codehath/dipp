@@ -1,5 +1,7 @@
 <!-- Journal.svelte -->
 <script lang="ts">
+  import { onMount } from "svelte";
+  import CircularButton from "../../components/CircularButton.svelte";
   export let form;
   export let data; // data returned by the load function
   const user = data.user[0];
@@ -7,12 +9,22 @@
 
   const dayData = data.dayData;
   const userTasks = data.userTasks;
+
+  // function to redirect on mount
+  onMount(() => {
+    // redirects to day page if journal completed
+    if (userTasks.journal) {
+      setTimeout(() => {
+        window.location.href = "/day";
+      }, 800); // Redirects after 800ms
+    }
+  });
 </script>
 
 {#if user}
   <div class="pop-up light">
-    <a class="circular-button home" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
-    <a class="circular-button back" href="/day"><img src="/images/return-circle-button.svg" alt="back button" /></a>
+    <CircularButton href="/dashboard" position="home" size={30} />
+    <CircularButton href="/day" position="back" size={30} />
     <div class="pop-up-content center">
       <div class="container">
         <h1>Daily Journal</h1>

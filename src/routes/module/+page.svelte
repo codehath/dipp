@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import { truncateWords } from "$lib/utils/clientHelperFunctions";
+  import CircularButton from "../../components/CircularButton.svelte";
 
   export let data; // data returned by the load function
   const user = data.user[0];
@@ -22,10 +23,7 @@
 
   // checks whether there is a task in the weeklyTasks table that corresponds to this task and has been completed
   function isTaskComplete(task) {
-    return weeklytasks.some(
-      (weeklytask) =>
-        weeklytask.task_id == task.id && weeklytask.complete_timestamp
-    );
+    return weeklytasks.some((weeklytask) => weeklytask.task_id == task.id && weeklytask.complete_timestamp);
   }
 
   // updates query parameters of current page when toggle buttons are clicked or tasks are expanded
@@ -83,12 +81,8 @@
 
 {#if user}
   <div class="pop-up white">
-    <a class="circular-button back" href="/day"
-      ><img src="/images/return-circle-button.svg" alt="back button" /></a
-    >
-    <a class="circular-button home" href="/dashboard"
-      ><img src="/images/home-circle-button.svg" alt="home button" /></a
-    >
+    <CircularButton href="/day" position="back" size={30} />
+    <CircularButton href="/dashboard" position="home" size={30} />
     <div class="pop-up-content">
       <div class="button-container">
         <button
@@ -103,10 +97,7 @@
             updateQueryParameters("instructions");
           }}
         >
-          <img
-            src="/images/meditation-grey-icon.svg"
-            alt="meditation-grey-icon"
-          />
+          <img src="/images/meditation-grey-icon.svg" alt="meditation-grey-icon" />
           <p>Instructions</p>
         </button>
         <button
@@ -134,20 +125,12 @@
               <li><strong>{task.task}</strong></li>
             {/each}
           </ol>
-          <p>
-            If you have any concerns or questions as you progress through the
-            material, don't hesitate to reach out to the study coordinators or
-            researchers.
-          </p>
+          <p>If you have any concerns or questions as you progress through the material, don't hesitate to reach out to the study coordinators or researchers.</p>
         {:else if selectedButton === "tasks"}
           {#if !selectedTask}
             {#each tasks.slice().sort((a, b) => a.id - b.id) as task, index}
               <div class="task-item" on:click={() => selectTask(task)}>
-                <div
-                  class="task-number-box {isTaskComplete(task)
-                    ? 'completed'
-                    : ''}"
-                >
+                <div class="task-number-box {isTaskComplete(task) ? 'completed' : ''}">
                   {index + 1}
                 </div>
                 <div class="task-item-content">
@@ -189,20 +172,9 @@
             {#if isTaskComplete(selectedTask)}
               <p class="complete">Task completed</p>
             {:else}
-              <form
-                class="block"
-                bind:this={updateForm}
-                action="{path}/?/update"
-                method="post"
-              >
+              <form class="block" bind:this={updateForm} action="{path}/?/update" method="post">
                 <label for="completed">Completed</label>
-                <input
-                  type="checkbox"
-                  id="completed"
-                  name="completed"
-                  bind:checked={completed}
-                  on:change={handleCheckBox}
-                />
+                <input type="checkbox" id="completed" name="completed" bind:checked={completed} on:change={handleCheckBox} />
                 <input type="hidden" name="taskID" value={selectedTask.id} />
               </form>
             {/if}

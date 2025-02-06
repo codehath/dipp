@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import Graph from "../../components/Graph.svelte";
+  import CircularButton from "../../components/CircularButton.svelte";
   import { retrieveAnswers } from "$lib/utils/clientHelperFunctions";
 
   export let data;
@@ -61,15 +62,15 @@
     if (completed) {
       setTimeout(() => {
         window.location.href = "/day";
-      }, 2000); // Redirects after 2 seconds
+      }, 800); // Redirects after 800ms
     }
   });
 </script>
 
 {#if user}
   <div class="pop-up medium">
-    <a class="circular-button home" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
-    <a class="circular-button back" href="/day"><img src="/images/return-circle-button.svg" alt="back button" /></a>
+    <CircularButton href="/dashboard" position="home" size={30} />
+    <CircularButton href="/day" position="back" size={30} />
     <div class="pop-up-content center">
       <div class="container">
         {#if completed}

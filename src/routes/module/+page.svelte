@@ -170,10 +170,10 @@
               {/if}
             </div>
             {#if isTaskComplete(selectedTask)}
-              <p class="complete">Task completed</p>
+              <p class="complete"><strong>Task Completed</strong></p>
             {:else}
               <form class="block" bind:this={updateForm} action="{path}/?/update" method="post">
-                <label for="completed">Completed</label>
+                <label for="completed">Mark as Complete</label>
                 <input type="checkbox" id="completed" name="completed" bind:checked={completed} on:change={handleCheckBox} />
                 <input type="hidden" name="taskID" value={selectedTask.id} />
               </form>

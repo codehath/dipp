@@ -15,41 +15,13 @@
     {/if}
 
     <div class="input-div">
-      <input
-        class="input-box"
-        id="username"
-        name="username"
-        type="text"
-        placeholder="Username"
-        required
-      />
+      <input class="input-box" id="username" name="username" type="text" placeholder="Username" required />
     </div>
 
     <div class="input-div">
-      <input
-        class="input-box"
-        id="password"
-        name="password"
-        type={showPassword ? "text" : "password"}
-        placeholder="Password"
-        required
-      />
-      <button
-        type="button"
-        class="password-toggle"
-        on:click={() => (showPassword = !showPassword)}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
+      <input class="input-box" id="password" name="password" type={showPassword ? "text" : "password"} placeholder="Password" required />
+      <button type="button" class="password-toggle" on:click={() => (showPassword = !showPassword)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           {#if showPassword}
             <!-- Show crossed-out eye icon when password is visible -->
             <path

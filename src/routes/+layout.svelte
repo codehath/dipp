@@ -66,20 +66,12 @@
             </button>
           </li>
           <li>
-            <a class="about-pill" href="/about" data-sveltekit-reload
-              ><p class="about">About</p></a
-            >
+            <a class="about-pill" href="/about" data-sveltekit-reload><p class="about">About</p></a>
           </li>
           {#if user}
             <li>
               <div class="logout-pill">
-                <form
-                  class="logout"
-                  action="/logout"
-                  method="POST"
-                  use:enhance
-                  data-sveltekit-reload
-                >
+                <form class="logout" action="/logout" method="POST" use:enhance data-sveltekit-reload>
                   <button type="submit">Log out</button>
                 </form>
               </div>
@@ -89,12 +81,7 @@
       </div>
 
       <!-- Responsive -->
-      <button
-        type="button"
-        class="navbar-toggle collapsed"
-        data-toggle="collapse"
-        data-target="#bs-example-navbar-collapse-1"
-      >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>

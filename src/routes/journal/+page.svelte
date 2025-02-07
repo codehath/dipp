@@ -11,12 +11,8 @@
 
 {#if user}
   <div class="pop-up light">
-    <a class="circular-button home" href="/dashboard"
-      ><img src="/images/home-circle-button.svg" alt="home button" /></a
-    >
-    <a class="circular-button back" href="/day"
-      ><img src="/images/return-circle-button.svg" alt="back button" /></a
-    >
+    <a class="circular-button home" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
+    <a class="circular-button back" href="/day"><img src="/images/return-circle-button.svg" alt="back button" /></a>
     <div class="pop-up-content center">
       <div class="container">
         <h1>Daily Journal</h1>

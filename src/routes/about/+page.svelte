@@ -6,117 +6,72 @@
 </svelte:head>
 
 <div class="pop-up white">
-  <a class="circular-button back" href="/dashboard"
-    ><img src="/images/cross-circle-button.svg" alt="back button" /></a
-  >
+  <a class="circular-button back" href="/dashboard"><img src="/images/cross-circle-button.svg" alt="back button" /></a>
   <div class="pop-up-content left">
-    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">
-      Welcome to Your 21-Day Psychedelic Preparation Journey
-    </h1>
-    <p>
-      We're excited to have you join us for this Digital Intervention for
-      Psychedelic Preparedness (DIPP), a programme designed to help you get
-      ready for your upcoming psilocybin session.
-    </p>
+    <h1 id="welcome-to-your-21-day-psychedelic-preparation-journey">Welcome to Your 21-Day Psychedelic Preparation Journey</h1>
+    <p>We're excited to have you join us for this Digital Intervention for Psychedelic Preparedness (DIPP), a programme designed to help you get ready for your upcoming psilocybin session.</p>
     <h2 id="how-it-works">How it works</h2>
     <p>
       For the next three weeks, you’ll complete <strong>daily practices</strong>
-      and <strong>weekly activities</strong> that will guide and support you on this
-      journey. Here’s what to expect:
+      and <strong>weekly activities</strong> that will guide and support you on this journey. Here’s what to expect:
     </p>
     <p>
-      <strong>Daily Morning Practice (up to 60 minutes total)</strong><br />Each
-      morning, you’ll follow three simple steps:
+      <strong>Daily Morning Practice (up to 60 minutes total)</strong><br />Each morning, you’ll follow three simple steps:
     </p>
     <ol>
       <li>
-        <strong>Listening Session (10-45 minutes)</strong>: Listen to an audio
-        session.
+        <strong>Listening Session (10-45 minutes)</strong>: Listen to an audio session.
       </li>
       <li>
-        <strong>Mood Check-In (1 minute)</strong>: Take a moment to reflect on
-        how you’re feeling.
+        <strong>Mood Check-In (1 minute)</strong>: Take a moment to reflect on how you’re feeling.
       </li>
       <li>
-        <strong>Journaling Exercise (5 minutes)</strong>: Complete a short
-        writing prompt to encourage insight and self-reflection.
+        <strong>Journaling Exercise (5 minutes)</strong>: Complete a short writing prompt to encourage insight and self-reflection.
       </li>
     </ol>
     <p>
-      Remember, it's important to <strong
-        >complete these practices every day, because you can't go back to missed
-        days</strong
-      >. Think of them like daily vitamins!
+      Remember, it's important to <strong>complete these practices every day, because you can't go back to missed days</strong>. Think of them like daily vitamins!
     </p>
     <p>
-      <strong>Weekly Activities (2 tasks, about 30 minutes each)</strong><br
-      />Each week, you’ll receive two additional activities to complete whenever
-      it works for you. These tasks include:
+      <strong>Weekly Activities (2 tasks, about 30 minutes each)</strong><br />Each week, you’ll receive two additional activities to complete whenever it works for you. These tasks include:
     </p>
     <ul>
       <li>Week 1: Learning about psilocybin (mostly reading).</li>
-      <li>
-        Week 2: Preparing your mind and body (you’ll learn two grounding
-        exercises).
-      </li>
-      <li>
-        Week 3: Planning for safety (you’ll develop coping strategies and an
-        integration plan).
-      </li>
+      <li>Week 2: Preparing your mind and body (you’ll learn two grounding exercises).</li>
+      <li>Week 3: Planning for safety (you’ll develop coping strategies and an integration plan).</li>
     </ul>
     <h2 id="accessing-dipp">Accessing DIPP</h2>
+    <p>Log in to the DIPP platform with your unique participant ID to access each day’s materials. Your content will align with your dosing schedule to ensure you’re fully prepared.</p>
     <p>
-      Log in to the DIPP platform with your unique participant ID to access each
-      day’s materials. Your content will align with your dosing schedule to
-      ensure you’re fully prepared.
-    </p>
-    <p>
-      <strong
-        >Note: To make the most of DIPP, it’s important to complete each day’s
-        practice on time, as you won’t be able to go back to missed days.</strong
-      >
+      <strong>Note: To make the most of DIPP, it’s important to complete each day’s practice on time, as you won’t be able to go back to missed days.</strong>
     </p>
     <p>Development of DIPP</p>
     <p>
-      DIPP was developed through a systematic, person-centred approach as
-      described in McAlpine et al. (2024b). This process involved qualitative
-      interviews with past psychedelic retreat participants and co-design
-      workshops with individuals preparing for psilocybin experiences. The
-      structure and content of DIPP are grounded in the four-factor model of
-      psychedelic preparedness established by McAlpine et al. (2024a) in their
-      development and validation of the Psychedelic Preparedness Scale (PPS).
-      These four factors – Knowledge-Expectation, Psychophysical-Readiness,
-      Intention-Preparation, and Safety-Planning – form the core modules of
-      DIPP, ensuring a comprehensive approach to psychedelic preparation that is
-      both theoretically sound and practically relevant to users' needs.
+      DIPP was developed through a systematic, person-centred approach as described in McAlpine et al. (2024b). This process involved qualitative interviews with past psychedelic retreat participants
+      and co-design workshops with individuals preparing for psilocybin experiences. The structure and content of DIPP are grounded in the four-factor model of psychedelic preparedness established by
+      McAlpine et al. (2024a) in their development and validation of the Psychedelic Preparedness Scale (PPS). These four factors – Knowledge-Expectation, Psychophysical-Readiness,
+      Intention-Preparation, and Safety-Planning – form the core modules of DIPP, ensuring a comprehensive approach to psychedelic preparation that is both theoretically sound and practically relevant
+      to users' needs.
     </p>
     <p>
-      The iterative development process, guided by participant feedback and
-      expert consultation, resulted in a 21-day digital intervention that aims
-      to enhance psychedelic preparedness across multiple domains. By
-      incorporating insights from both clinical expertise and lived experience,
-      DIPP represents a novel approach to standardising and optimising
-      preparation for psychedelic experiences in various contexts.
+      The iterative development process, guided by participant feedback and expert consultation, resulted in a 21-day digital intervention that aims to enhance psychedelic preparedness across multiple
+      domains. By incorporating insights from both clinical expertise and lived experience, DIPP represents a novel approach to standardising and optimising preparation for psychedelic experiences in
+      various contexts.
     </p>
     <h2 id="further-questions">Further Questions</h2>
     <p>
-      If you have any questions, don't hesitate to email <a
-        href="mailto:rosalind.mcalpine.18@ucl.ac.uk"
-        >rosalind.mcalpine.18@ucl.ac.uk</a
-      >.
+      If you have any questions, don't hesitate to email <a href="mailto:rosalind.mcalpine.18@ucl.ac.uk">rosalind.mcalpine.18@ucl.ac.uk</a>.
     </p>
 
     <h2>References</h2>
     <div class="references">
       <p>
-        McAlpine, R. G., Blackburne, G., & Kamboj, S. K. (2024a). Development
-        and psychometric validation of a novel scale for measuring 'psychedelic
-        preparedness'. <em>Scientific Reports</em>, 14(1), 3280.
+        McAlpine, R. G., Blackburne, G., & Kamboj, S. K. (2024a). Development and psychometric validation of a novel scale for measuring 'psychedelic preparedness'. <em>Scientific Reports</em>, 14(1),
+        3280.
       </p>
       <p>
-        McAlpine, R. G., Blackburne, G., & Kamboj, S. K. (2024b). Development
-        and psychometric validation of a novel scale for measuring 'psychedelic
-        preparedness'. <em>Scientific Reports</em>, 14(1), 3280.
+        McAlpine, R. G., Blackburne, G., & Kamboj, S. K. (2024b). Development and psychometric validation of a novel scale for measuring 'psychedelic preparedness'. <em>Scientific Reports</em>, 14(1),
+        3280.
       </p>
     </div>
   </div>
@@ -130,8 +85,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
     max-width: 800px;
     margin: 0 auto;
@@ -230,8 +184,7 @@
     margin: 2rem 0;
     padding: 1.5rem;
     border-top: 1px solid #e5e5e5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     display: block;
     position: relative;
   }

@@ -13,8 +13,7 @@
   console.log("File data:", file);
 
   // dynamically import the audio file based on day
-  const audioPath =
-    "https://gidvzbginnkwrxhc.public.blob.vercel-storage.com/" + file;
+  const audioPath = "https://gidvzbginnkwrxhc.public.blob.vercel-storage.com/" + file;
 
   console.log("Audio path:", audioPath);
 

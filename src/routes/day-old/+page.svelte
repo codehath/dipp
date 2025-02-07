@@ -12,11 +12,7 @@
   let activityButtons;
 
   if (user.meditation) {
-    taskCompletion = [
-      !!userTasks.meditation,
-      !!userTasks.mood_id,
-      !!userTasks.journal,
-    ];
+    taskCompletion = [!!userTasks.meditation, !!userTasks.mood_id, !!userTasks.journal];
     tasks = { meditate: 0, mood: 1, journal: 2 };
 
     progressBar = {
@@ -73,31 +69,17 @@
 
 {#if user}
   <div class="dashboard-container module-colour">
-    <img
-      class="dashboard-image"
-      src="/images/module-dashboard-shape.svg"
-      alt="dashboard-shape"
-    />
+    <img class="dashboard-image" src="/images/module-dashboard-shape.svg" alt="dashboard-shape" />
     <div class="dashboard-contents">
-      <a class="home-button" href="/dashboard"
-        ><img src="/images/home-circle-button.svg" alt="home button" /></a
-      >
+      <a class="home-button" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
       <div class="module-top-button">
         <div class="module-info-pill">
           <a class="module-info-button" href="/module?view=instructions">
-            <img
-              class="module-icon"
-              src="/images/meditation-icon.svg"
-              alt="meditation-icon"
-            />
+            <img class="module-icon" src="/images/meditation-icon.svg" alt="meditation-icon" />
             <p class="module-info-text">Instructions</p>
           </a>
           <a class="module-info-button" href="/module?view=tasks">
-            <img
-              class="module-icon"
-              src="/images/tasks-icon.svg"
-              alt="tasks-icon"
-            />
+            <img class="module-icon" src="/images/tasks-icon.svg" alt="tasks-icon" />
             <p class="module-info-text">Tasks</p>
           </a>
         </div>
@@ -115,8 +97,7 @@
         {/each}
       </div>
       <p class="progress-text">
-        {taskCompletion.filter((value) => value === true)
-          .length}/{taskCompletion.length}
+        {taskCompletion.filter((value) => value === true).length}/{taskCompletion.length}
       </p>
     </div>
   </div>
@@ -127,11 +108,7 @@
         <h1>Meditate</h1>
         <a href="/meditate">
           <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-1.svg"
-              alt="enter-button"
-            />
+            <img class="enter-button" src="/images/enter-button-1.svg" alt="enter-button" />
           </div>
         </a>
       </div>
@@ -140,20 +117,12 @@
         {#if userTasks.meditation}
           <a href="/mood">
             <div class="activity-contents">
-              <img
-                class="enter-button"
-                src="/images/enter-button-2.svg"
-                alt="enter-button"
-              />
+              <img class="enter-button" src="/images/enter-button-2.svg" alt="enter-button" />
             </div>
           </a>
         {:else}
           <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-2.svg"
-              alt="enter-button"
-            />
+            <img class="enter-button" src="/images/enter-button-2.svg" alt="enter-button" />
           </div>
         {/if}
       </div>
@@ -162,20 +131,12 @@
         {#if userTasks.mood_id}
           <a href="/journal">
             <div class="activity-contents">
-              <img
-                class="enter-button"
-                src="/images/enter-button-3.svg"
-                alt="enter-button"
-              />
+              <img class="enter-button" src="/images/enter-button-3.svg" alt="enter-button" />
             </div>
           </a>
         {:else}
           <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-3.svg"
-              alt="enter-button"
-            />
+            <img class="enter-button" src="/images/enter-button-3.svg" alt="enter-button" />
           </div>
         {/if}
       </div>
@@ -186,11 +147,7 @@
         <h1>Mood</h1>
         <a href="/mood">
           <div class="activity-contents">
-            <img
-              class="enter-button"
-              src="/images/enter-button-1.svg"
-              alt="enter-button"
-            />
+            <img class="enter-button" src="/images/enter-button-1.svg" alt="enter-button" />
           </div>
         </a>
       </div>

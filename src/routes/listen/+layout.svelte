@@ -1,5 +1,6 @@
 <script>
   import AudioPlayer from "../../components/AudioPlayer.svelte";
+  import CircularButton from "../../components/CircularButton.svelte";
   export let data;
 
   console.log("Data received:", data);
@@ -24,12 +25,8 @@
 
 {#if user}
   <div class="pop-up dark">
-    <a class="circular-button back" href="/day">
-      <img src="/images/return-circle-button.svg" alt="back button" />
-    </a>
-    <a class="circular-button home" href="/dashboard">
-      <img src="/images/home-circle-button.svg" alt="home button" />
-    </a>
+    <CircularButton href="/day" position="back" size={30} />
+    <CircularButton href="/dashboard" position="home" size={40} />
     <div class="pop-up-content center">
       <AudioPlayer {audioFile} {meditated} {medGroup} />
     </div>

@@ -4,59 +4,13 @@
   export let medGroup;
 
   let audioPlayer;
-  let path = "meditate";
+  let path = medGroup ? "meditate" : "music";
   let isPlaying = false;
   let currentTime = 0;
   let duration = 0;
-  let message = meditated
-    ? "Thank you for completing today's meditation!"
-    : "Click Play to Begin Meditation";
+  let message = meditated ? "Thank you for completing today's meditation!" : "Click Play to Begin Meditation";
   if (!medGroup) {
-    message = meditated
-      ? "Thank you for completing today's listening session!"
-      : "Click Play to Begin Music";
-  }
-
-  let audioContext;
-  let audioBuffer;
-  let isLoading = true;
-
-  async function initializeAudio() {
-    try {
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      const response = await fetch(audioFile, {
-        priority: "high",
-        importance: "high",
-      });
-
-      const reader = response.body.getReader();
-      const chunks = [];
-      let totalLength = 0;
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        totalLength += value.length;
-      }
-
-      const arrayBuffer = new Uint8Array(totalLength);
-      let position = 0;
-      for (const chunk of chunks) {
-        arrayBuffer.set(chunk, position);
-        position += chunk.length;
-      }
-
-      audioBuffer = await audioContext.decodeAudioData(arrayBuffer.buffer);
-      duration = audioBuffer.duration;
-      isLoading = false;
-    } catch (error) {
-      console.error("Error initializing audio:", error);
-      isLoading = false;
-    }
+    message = meditated ? "Thank you for completing today's listening session!" : "Click Play to Begin Music";
   }
 
   function togglePlayback() {
@@ -70,16 +24,11 @@
     isPlaying = !isPlaying;
   }
 
-  function restartTrack() {
-    audioPlayer.pause();
-    isPlaying = false;
-    audioPlayer.currentTime = 0;
-  }
-
   function updatePlaybackStatus() {
     if (!audioPlayer) return;
     isPlaying = !audioPlayer.paused;
     currentTime = audioPlayer.currentTime;
+    duration = audioPlayer.duration;
   }
 
   function formatTime(time) {
@@ -105,7 +54,6 @@
   }
 
   function handleEnded() {
-    restartTrack();
     submitForm()
       .then(() => {
         if (medGroup) {
@@ -114,8 +62,8 @@
           message = "Thank you for completing today's listening session!";
         }
         setTimeout(() => {
-          window.location.href = "/day";
-        }, 2000);
+          window.location.href = "/mood";
+        }, 800);
       })
       .catch((error) => {
         console.error("Error submitting task:", error);
@@ -129,43 +77,29 @@
   $: {
     updatePlaybackStatus();
   }
-
-  import { onMount } from "svelte";
-  onMount(() => {
-    initializeAudio();
-  });
 </script>
 
-<audio
-  bind:this={audioPlayer}
-  on:loadedmetadata={updatePlaybackStatus}
-  on:timeupdate={updatePlaybackStatus}
-  on:ended={handleEnded}
->
-  <source src={audioFile} type="audio/aac" />
+<audio bind:this={audioPlayer} on:loadedmetadata={updatePlaybackStatus} on:timeupdate={updatePlaybackStatus} on:ended={handleEnded}>
+  <source src={audioFile} type="audio/mp3" />
   Your browser does not support the audio element.
 </audio>
 
 <h1 class="title">{message}</h1>
 <button class="play-button" on:click={togglePlayback}>
-  <h1>{isPlaying ? "Pause" : "Play"}</h1>
+  {#if isPlaying}
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="#ffffff" d="M14 19V5h4v14zm-8 0V5h4v14z" /></svg>
+  {:else}
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="#ffffff" d="M8 19V5l11 7z" /></svg>
+  {/if}
 </button>
 <div class="timer-content">
   <div class="timer-text">
-    <span class="white-text">{formatTime(currentTime)}</span>
-    <span class="restart">/{isLoading ? "--:--" : formatTime(duration)}</span>
+    <span class="white-text">{formatTime(currentTime)}</span><span class="duration">/{formatTime(duration)}</span>
   </div>
 </div>
 
 <!-- Scrubber for audio -->
-<input
-  type="range"
-  min="0"
-  max={duration || 420}
-  value={currentTime}
-  on:input={scrubAudio}
-  class="scrubber"
-/>
+<input type="range" min="0" max={duration} value={currentTime} on:input={scrubAudio} class="scrubber" />
 
 <style>
   .title {
@@ -186,26 +120,26 @@
     border-radius: 50%;
     border-style: solid;
     border-color: #fff;
-    padding: 50px 0;
     margin: 0 auto; /* Center the button */
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .play-button:hover {
+    transform: scale(1.05);
+  }
+  .play-button:active {
+    transform: scale(0.95);
   }
   .timer-content {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 20px;
     padding: 50px 0;
   }
-  .restart-button {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    border-style: solid;
-    border-color: #fff;
-    padding: 5px 20px;
-    background-color: transparent;
-  }
-  .restart {
+  .duration {
     color: #000;
     text-align: center;
     font-size: 20px;

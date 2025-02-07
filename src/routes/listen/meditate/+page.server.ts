@@ -5,14 +5,18 @@ import { fail } from "@sveltejs/kit";
 import { redirect } from "@sveltejs/kit";
 import { getDefaultRedirect } from "$lib/utils/helperFunctions";
 import { getDay, getModuleID, getTodaysDate } from "$lib/utils/helperFunctions";
+import type { RequestEvent } from "@sveltejs/kit";
+
+console.log("Importing dependencies");
 
 const today = getTodaysDate().toISOString();
+console.log("Today's date:", today);
 
 export const actions = {
   update: async ({ request, locals }) => {
     try {
       // Log the start of the update function
-      console.log("Starting update action");
+      console.log("Starting MEDITATE update action");
 
       // Log local user data
       const userID = locals.user[0].id;
@@ -20,7 +24,7 @@ export const actions = {
 
       // Retrieve form data and log it
       const formData = await request.formData();
-      console.log("Form data received:", formData);
+      console.log("Form data received:", Object.fromEntries(formData));
 
       // Retrieve meditation status and log it
       let meditation = formData.get("meditated");
@@ -35,6 +39,7 @@ export const actions = {
       }
 
       // Query the daily tasks for the specific user and log the result
+      console.log("Querying daily tasks for user:", userID, "and date:", today);
       let userTasksQuery = await db
         .select()
         .from(dailyTasks)
@@ -47,6 +52,7 @@ export const actions = {
         console.log("Updating dailyTasks entry with ID:", userTasksQuery[0].id);
 
         // Update the meditation status in the dailyTasks table
+        console.log("Attempting to update meditation status to true");
         await db
           .update(dailyTasks)
           // .set({ meditation: meditation }) // If errors - LLOOK HERE----------------------------------------------------------------
@@ -58,8 +64,13 @@ export const actions = {
         console.log("No daily tasks entry found for user and date.");
         return fail(404, { message: "No daily tasks found for user" });
       }
-    } catch (err) {
-      console.error("Error during update action:", err);
+    } catch (error: any) {
+      console.error("Error during update action:", error);
+      console.error("Error details:", {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      });
       return fail(500, { message: "Internal server error" });
     }
   },

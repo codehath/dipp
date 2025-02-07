@@ -1,5 +1,7 @@
 <!-- Journal.svelte -->
 <script lang="ts">
+  import { onMount } from "svelte";
+  import CircularButton from "../../components/CircularButton.svelte";
   export let form;
   export let data; // data returned by the load function
   const user = data.user[0];
@@ -7,16 +9,26 @@
 
   const dayData = data.dayData;
   const userTasks = data.userTasks;
+
+  // function to redirect on mount
+  onMount(() => {
+    // redirects to day page if journal completed
+    if (userTasks.journal) {
+      setTimeout(() => {
+        window.location.href = "/day";
+      }, 800); // Redirects after 800ms
+    }
+  });
 </script>
 
 {#if user}
   <div class="pop-up light">
-    <a class="circular-button home" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
-    <a class="circular-button back" href="/day"><img src="/images/return-circle-button.svg" alt="back button" /></a>
+    <CircularButton href="/dashboard" position="home" size={30} />
+    <CircularButton href="/day" position="back" size={30} />
     <div class="pop-up-content center">
       <div class="container">
         <h1>Daily Journal</h1>
-        <h4>{dayData.title}</h4>
+        <h4><strong>{dayData.title}</strong></h4>
         {#if form?.message}
           <p class="message">{form.message}</p>
         {/if}
@@ -24,14 +36,20 @@
         {#if !userTasks.journal}
           <form action="{path}/?/update" method="post">
             <input type="hidden" name="id" value={userTasks.id} />
-            <textarea name="journal" placeholder={dayData.prompt} />
+            <div class="journal-container">
+              <p class="prompt">{dayData.prompt}</p>
+              <textarea name="journal" />
+            </div>
             <div class="left">
               <input class="form-button" type="submit" value="Submit" />
             </div>
           </form>
         {:else}
           <div class="enterTask">
-            <textarea name="journal" placeholder={userTasks.journal} disabled />
+            <div class="journal-container">
+              <p class="prompt">{dayData.prompt}</p>
+              <textarea bind:value={userTasks.journal} name="journal" disabled />
+            </div>
           </div>
         {/if}
       </div>
@@ -48,7 +66,7 @@
   }
   .container h1,
   h4 {
-    color: #fff;
+    color: var(--text-on-color);
     font-weight: 300;
     text-align: left;
   }
@@ -59,8 +77,8 @@
     padding: 20px;
     border-radius: 20px;
     border-style: solid;
-    border-color: #d5d5d5;
-    background: #fff;
+    border-color: var(--border-color);
+    background: var(--background-color);
     width: 100%;
     height: 379px;
     display: flex;
@@ -69,33 +87,44 @@
     resize: none;
   }
   textarea::placeholder {
-    color: #888888; /* Change this to the color you prefer */
+    color: var(--placeholder-color);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px; /* Change this to the size you prefer */
-    /* Add other styles as needed */
+    font-size: 14px;
   }
   textarea:focus {
     border-style: solid;
-    border-color: #5db3e5;
+    border-color: var(--light-blue);
   }
   textarea:focus::placeholder {
     color: transparent;
   }
   textarea:disabled {
-    background-color: #ededed; /* Change this to the color you prefer */
+    background-color: var(--disabled-bg);
   }
   textarea:disabled::placeholder {
-    color: #888888; /* Change this to the color you prefer */
+    color: var(--placeholder-color);
   }
   .left {
     flex-direction: row;
     justify-content: right;
   }
   .message {
-    color: white;
+    color: var(--text-on-color);
     font-size: 16px;
     font-weight: 300;
     width: 70%;
     margin: 20px 0 20px 0;
+  }
+  .prompt {
+    color: var(--text-on-color);
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .journal-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
 </style>

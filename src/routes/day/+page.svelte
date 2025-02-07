@@ -1,5 +1,6 @@
 <!-- Day.svelte -->
 <script>
+  import CircularButton from "../../components/CircularButton.svelte";
   export let data; // data returned by the load function
   const user = data.user[0];
   const module = data.module;
@@ -102,7 +103,9 @@
       </defs>
     </svg>
     <div class="dashboard-contents">
-      <a class="home-button" href="/dashboard"><img src="/images/home-circle-button.svg" alt="home button" /></a>
+      <div class="home-button-wrapper">
+        <CircularButton href="/dashboard" position="home" size={30} variant="day-home" />
+      </div>
       <div class="module-top-button">
         <div class="module-info-pill">
           <a class="module-info-button" href="/module?view=instructions">

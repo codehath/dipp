@@ -6,19 +6,12 @@ import { redirect } from "@sveltejs/kit";
 import { getDay, decryptId } from "$lib/utils/helperFunctions";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const nonAuthRoutes = [
-    "/",
-    "/login",
-    "/logout",
-    "/about",
-    "/welcome",
-    "/complete",
-    "/api/seed",
-  ];
+  const nonAuthRoutes = ["/", "/login", "/logout", "/about", "/welcome", "/complete", "/api/seed"];
+  const isApiRoute = event.url.pathname.startsWith("/api/");
   const encryptedUserId = event.cookies.get("userID");
 
   if (!encryptedUserId) {
-    if (!nonAuthRoutes.includes(event.url.pathname)) {
+    if (!nonAuthRoutes.includes(event.url.pathname) && !isApiRoute) {
       throw redirect(303, "/");
     }
     return await resolve(event);
@@ -29,7 +22,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   // If decryption failed, treat as unauthorized
   if (!userID) {
-    if (!nonAuthRoutes.includes(event.url.pathname)) {
+    if (!nonAuthRoutes.includes(event.url.pathname) && !isApiRoute) {
       throw redirect(303, "/");
     }
     return await resolve(event);
@@ -44,7 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const day = getDay(user[0].start_date);
   // Only redirect if trying to access a protected route
-  if (!nonAuthRoutes.includes(event.url.pathname)) {
+  if (!nonAuthRoutes.includes(event.url.pathname) && !isApiRoute) {
     if (day < 1) {
       throw redirect(303, "/welcome");
     } else if (day > 21) {

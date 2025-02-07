@@ -191,6 +191,7 @@
   }
   .complete {
     background-color: var(--complete-green);
+    border-color: var(--complete-border-green);
     opacity: 0.5;
   }
   h1 {
@@ -227,7 +228,9 @@
   }
   .module-icon {
     width: 20px;
+    filter: var(--image-filter);
   }
+
   .home-button {
     position: absolute;
     top: 16px;

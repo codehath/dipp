@@ -186,7 +186,7 @@
     max-height: 80px;
     border-radius: 38px;
     border-style: solid;
-    border-color: var(--light-blue);
+    border-color: var(--primary-blue);
     display: flex;
     flex-direction: column;
     align-items: center;

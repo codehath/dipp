@@ -30,14 +30,14 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: white;
+    background: var(--background-color);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border: 1px solid #b3b3b3;
+    border: 1px solid var(--border-color);
   }
 
   .circular-button:hover {
@@ -47,7 +47,7 @@
   .circular-button svg {
     width: 30px;
     height: 30px;
-    color: #808080;
+    color: var(--placeholder-color);
   }
 
   .back {

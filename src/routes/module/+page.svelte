@@ -206,7 +206,7 @@
   }
   .task-item {
     border-style: solid;
-    border-color: #d5d5d5;
+    border-color: var(--border-color);
     border-radius: 20px;
     padding: 10px;
     display: flex;
@@ -238,7 +238,7 @@
     min-width: 60px;
     height: 80%;
     border-style: solid;
-    border-color: #168ace;
+    border-color: var(--primary-blue);
     border-radius: 20px;
     font-size: 30px;
     display: flex;
@@ -254,7 +254,7 @@
   }
   .goal {
     font-size: 16px;
-    color: #d5d5d5;
+    color: var(--placeholder-color);
     margin: 5px 0 5px 0;
   }
   .task-details {
@@ -288,15 +288,15 @@
     width: 100%;
   }
   .black {
-    color: white;
-    background-color: black;
+    color: var(--text-on-color);
+    background-color: var(--text-color);
   }
   .completed {
-    background-color: #5db3e5;
+    background-color: var(--light-blue);
     box-shadow: 0px 4px 13.1px -4px rgba(0, 0, 0, 0.25) inset;
   }
   .complete {
-    color: green;
+    color: var(--complete-green);
     font-style: italic;
   }
   .block {
@@ -314,7 +314,7 @@
   .task-details h1 {
     font-size: 32px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 20px;
     line-height: 1.2;
   }
@@ -322,7 +322,7 @@
   .task-details h2 {
     font-size: 24px;
     font-weight: 500;
-    color: #444;
+    color: var(--text-color);
     margin: 15px 0 10px 0;
     line-height: 1.3;
   }

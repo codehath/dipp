@@ -24,10 +24,7 @@ export const load = async ({ locals }) => {
     .from(dayData)
     .where(eq(dayData.id, getDay(startDate)));
 
-  const moduleQuery = await db
-    .select()
-    .from(modules)
-    .where(eq(modules.id, moduleID));
+  const moduleQuery = await db.select().from(modules).where(eq(modules.id, moduleID));
 
   let userTasksQuery = await db
     .select()

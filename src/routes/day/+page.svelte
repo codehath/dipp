@@ -211,7 +211,6 @@
     align-items: center;
     justify-content: center;
     border: solid var(--text-color);
-    /* background-color: transparent; */
     border-radius: 50px;
     padding: 20px 20px 20px 40px;
     font-size: 14px;
@@ -244,16 +243,16 @@
 
   @media (max-width: 768px) {
     .dashboard-container {
-      background-color: var(--logout-color);
+      background-color: var(--background-color);
     }
     .dashboard-image {
-      background-color: var(--logout-color);
+      background-color: var(--background-color);
+    }
+    .home-button-wrapper {
+      display: none;
     }
     .activity {
       margin: 4% 3%;
-    }
-    .home-button {
-      display: none;
     }
   }
 </style>

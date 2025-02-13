@@ -199,9 +199,9 @@
     height: 20px;
     max-width: 5vw;
     max-height: 5vw;
-    border: solid 1px var(--background-color);
+    border: solid 1px var(--radio-buttons);
     border-radius: 50%;
-    background-color: var(--background-color);
+    background-color: var(--radio-buttons);
     margin: 10px;
     cursor: pointer;
   }
@@ -307,7 +307,7 @@
     width: 100%;
     max-width: 250px;
     height: 10px;
-    background: var(--background-color);
+    background: var(--radio-buttons);
     border-radius: 20px;
     outline: none;
     -webkit-transition: 0.2s;
@@ -321,7 +321,7 @@
     background: var(--light-blue);
     cursor: pointer;
     border-radius: 50%;
-    border: var(--background-color) solid;
+    border: var(--radio-buttons) solid;
   }
   .slider::-moz-range-thumb {
     width: 25px;
@@ -346,6 +346,10 @@
     font-size: 18px;
     transition: background-color 0.3s;
     min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
   .form-button:hover {
     background-color: var(--medium-blue);

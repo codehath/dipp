@@ -30,7 +30,7 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: var(--background-color);
+    background: var(--circle-button-color);
     display: flex;
     justify-content: center;
     align-items: center;

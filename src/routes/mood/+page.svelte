@@ -157,7 +157,7 @@
     gap: 2vh;
   }
   .instructions-text p {
-    color: var(--text-on-color);
+    color: var(--text-white);
     text-align: center;
     font-size: 22px;
     font-weight: 300;
@@ -176,7 +176,7 @@
     width: 100%;
   }
   .question-text p {
-    color: var(--text-on-color);
+    color: var(--text-white);
     text-align: left;
     font-size: 18px;
     font-style: normal;
@@ -224,7 +224,7 @@
   }
   .number {
     font-size: 12px;
-    color: var(--text-on-color);
+    color: var(--text-white);
     min-width: 60px;
     text-align: center;
   }
@@ -255,7 +255,7 @@
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-size: 14px;
   }
   .y-label {
@@ -263,7 +263,7 @@
     top: 50%;
     left: -40px;
     transform: translateY(-50%) rotate(-90deg);
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-size: 14px;
   }
   .answer-input {
@@ -288,7 +288,7 @@
     margin-bottom: 1rem;
   }
   .label-text {
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
@@ -339,7 +339,7 @@
   .form-button {
     padding: 1rem 3rem;
     background-color: var(--light-blue);
-    color: var(--text-on-color);
+    color: var(--text-color);
     border: none;
     border-radius: 25px;
     cursor: pointer;

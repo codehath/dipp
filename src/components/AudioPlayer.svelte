@@ -87,9 +87,9 @@
 <h1 class="title">{message}</h1>
 <button class="play-button" on:click={togglePlayback}>
   {#if isPlaying}
-    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="var(--text-on-color)" d="M14 19V5h4v14zm-8 0V5h4v14z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="var(--text-white)" d="M14 19V5h4v14zm-8 0V5h4v14z" /></svg>
   {:else}
-    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="var(--text-on-color)" d="M8 19V5l11 7z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><path fill="var(--text-white)" d="M8 19V5l11 7z" /></svg>
   {/if}
 </button>
 <div class="timer-content">
@@ -110,7 +110,7 @@
     font-size: 32px;
     font-style: normal;
     font-weight: 300;
-    color: var(--text-on-color);
+    color: var(--text-white);
   }
   .play-button {
     display: flex;
@@ -120,7 +120,7 @@
     height: 120px;
     border-radius: 50%;
     border-style: solid;
-    border-color: var(--text-on-color);
+    border-color: var(--text-white);
     margin: 0 auto; /* Center the button */
     padding: 0;
     background: transparent;
@@ -149,7 +149,7 @@
     line-height: normal;
   }
   .current-time {
-    color: var(--text-on-color);
+    color: var(--text-white);
     text-align: center;
     font-size: 20px;
     font-style: normal;

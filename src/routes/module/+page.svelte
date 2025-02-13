@@ -245,6 +245,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+    background-color: var(--weekly-task-number-box);
   }
   .task-item-content {
     flex-direction: column;
@@ -288,12 +289,13 @@
     width: 100%;
   }
   .black {
-    color: var(--text-on-color);
+    color: var(--text-black);
     background-color: var(--text-color);
   }
   .completed {
-    background-color: var(--light-blue);
-    box-shadow: 0px 4px 13.1px -4px rgba(0, 0, 0, 0.25) inset;
+    background-color: var(--complete-green);
+    border-color: var(--complete-border-green);
+    opacity: 0.5;
   }
   .complete {
     color: var(--complete-green);

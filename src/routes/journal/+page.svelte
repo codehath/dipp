@@ -66,7 +66,7 @@
   }
   .container h1,
   h4 {
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-weight: 300;
     text-align: left;
   }
@@ -109,14 +109,14 @@
     justify-content: right;
   }
   .message {
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-size: 16px;
     font-weight: 300;
     width: 70%;
     margin: 20px 0 20px 0;
   }
   .prompt {
-    color: var(--text-on-color);
+    color: var(--text-white);
     font-size: 16px;
     line-height: 1.4;
     margin-bottom: 10px;

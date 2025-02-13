@@ -119,7 +119,7 @@
     width: 480px;
   }
   .icon-bar {
-    background-color: black;
+    background-color: var(--text-color);
   }
   .container {
     display: flex;
@@ -243,6 +243,11 @@
     border: none;
     border-radius: 50%;
     margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
   }
   .theme-toggle:hover {
     background: var(--form-bg);
@@ -251,6 +256,9 @@
   @media (max-width: 768px) {
     .navbar-nav {
       display: block;
+      margin: 5px 0;
+    }
+    .theme-toggle {
       margin: 5px 0;
     }
   }

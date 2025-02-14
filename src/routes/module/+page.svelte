@@ -179,7 +179,7 @@
               </form>
             {/if}
             <button
-              class="form-button"
+              class="form-button black"
               on:click={() => {
                 selectedTask = null;
                 updateQueryParameters("tasks");
@@ -327,5 +327,13 @@
     color: var(--text-color);
     margin: 15px 0 10px 0;
     line-height: 1.3;
+  }
+
+  /* Add styling for headings in specifics section */
+  :global(.task-details h1),
+  :global(.task-details h2),
+  :global(.task-details h3),
+  :global(.task-details h4) {
+    color: var(--text-color);
   }
 </style>

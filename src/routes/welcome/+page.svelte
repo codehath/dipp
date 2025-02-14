@@ -39,7 +39,7 @@
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 24px;
-    color: rgb(35, 35, 35);
+    color: var(--text-color);
   }
 
   h2,

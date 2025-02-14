@@ -78,7 +78,7 @@
     border-radius: 20px;
     border-style: solid;
     border-color: var(--border-color);
-    background: var(--background-color);
+    background: var(--radio-buttons);
     width: 100%;
     height: 379px;
     display: flex;

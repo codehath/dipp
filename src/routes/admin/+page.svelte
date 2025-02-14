@@ -24,7 +24,9 @@
 
 <h4>Add New Participant:</h4>
 {#if form?.message}
-  <p>{form.message}</p>
+  <div class="message {form?.success ? 'success' : 'error'}">
+    {form.message}
+  </div>
 {/if}
 
 <form action="?/add" method="POST" class="flex">
@@ -119,5 +121,25 @@
 
   .styled-button:active {
     background-color: #004085;
+  }
+
+  /* Message styles */
+  .message {
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
   }
 </style>

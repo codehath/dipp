@@ -157,7 +157,7 @@
     gap: 2vh;
   }
   .instructions-text p {
-    color: #fff;
+    color: var(--text-white);
     text-align: center;
     font-size: 22px;
     font-weight: 300;
@@ -176,7 +176,7 @@
     width: 100%;
   }
   .question-text p {
-    color: #fff;
+    color: var(--text-white);
     text-align: left;
     font-size: 18px;
     font-style: normal;
@@ -199,17 +199,17 @@
     height: 20px;
     max-width: 5vw;
     max-height: 5vw;
-    border: solid 1px white;
+    border: solid 1px var(--radio-buttons);
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--radio-buttons);
     margin: 10px;
     cursor: pointer;
   }
   input[type="radio"]:checked {
-    background-color: #5db3e5;
+    background-color: var(--light-blue);
   }
   input[type="radio"]:hover {
-    background-color: #5db3e5;
+    background-color: var(--light-blue);
   }
   .radio-buttons {
     flex-direction: row;
@@ -224,7 +224,7 @@
   }
   .number {
     font-size: 12px;
-    color: white;
+    color: var(--text-white);
     min-width: 60px;
     text-align: center;
   }
@@ -255,7 +255,7 @@
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    color: white;
+    color: var(--text-white);
     font-size: 14px;
   }
   .y-label {
@@ -263,7 +263,7 @@
     top: 50%;
     left: -40px;
     transform: translateY(-50%) rotate(-90deg);
-    color: white;
+    color: var(--text-white);
     font-size: 14px;
   }
   .answer-input {
@@ -288,7 +288,7 @@
     margin-bottom: 1rem;
   }
   .label-text {
-    color: #fff;
+    color: var(--text-white);
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
@@ -307,7 +307,7 @@
     width: 100%;
     max-width: 250px;
     height: 10px;
-    background: white;
+    background: var(--radio-buttons);
     border-radius: 20px;
     outline: none;
     -webkit-transition: 0.2s;
@@ -318,15 +318,15 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #5db3e5;
+    background: var(--light-blue);
     cursor: pointer;
     border-radius: 50%;
-    border: white solid;
+    border: var(--radio-buttons) solid;
   }
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: #5db3e5;
+    background: var(--light-blue);
     cursor: pointer;
     border-radius: 50%;
   }
@@ -338,17 +338,21 @@
   }
   .form-button {
     padding: 1rem 3rem;
-    background-color: #5db3e5;
-    color: white;
+    background-color: var(--light-blue);
+    color: var(--text-color);
     border: none;
     border-radius: 25px;
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s;
     min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
   .form-button:hover {
-    background-color: #4a90c0;
+    background-color: var(--medium-blue);
   }
 
   /* Mobile Styles */

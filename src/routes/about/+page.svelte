@@ -80,7 +80,7 @@
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 24px;
-    color: rgb(35, 35, 35);
+    color: var(--text-color);
   }
 
   h2,
@@ -89,7 +89,7 @@
     font-weight: 600;
     margin-top: 32px;
     margin-bottom: 16px;
-    color: rgb(35, 35, 35);
+    color: var(--text-color);
   }
 
   h3 {
@@ -100,6 +100,7 @@
     margin-bottom: 16px;
     font-size: 16px;
     line-height: 1.6;
+    color: var(--text-color);
   }
 
   ol,
@@ -124,7 +125,7 @@
   /* Text decoration for what appears to be links in the screenshot */
   .underline {
     text-decoration: underline;
-    text-decoration-color: rgb(209, 209, 209);
+    text-decoration-color: var(--border-color);
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
   }
@@ -132,7 +133,7 @@
   /* Bold text styling */
   strong {
     font-weight: 600;
-    color: rgb(35, 35, 35);
+    color: var(--text-color);
   }
 
   /* Specific spacing for sections */
@@ -144,20 +145,20 @@
   a {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: rgb(209, 209, 209);
+    text-decoration-color: var(--border-color);
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
   }
 
   a:hover {
-    text-decoration-color: rgb(35, 35, 35);
+    text-decoration-color: var(--text-color);
   }
 
   /* Container */
   .container {
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px var(--border-color);
     padding: 40px;
   }
 
@@ -190,7 +191,7 @@
     text-indent: -2rem;
     line-height: 1.6;
     font-size: 1.3rem;
-    color: #2d2d2d;
+    color: var(--text-color);
   }
 
   .references p:last-child {

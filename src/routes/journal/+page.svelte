@@ -66,7 +66,7 @@
   }
   .container h1,
   h4 {
-    color: #fff;
+    color: var(--text-white);
     font-weight: 300;
     text-align: left;
   }
@@ -77,8 +77,8 @@
     padding: 20px;
     border-radius: 20px;
     border-style: solid;
-    border-color: #d5d5d5;
-    background: #fff;
+    border-color: var(--border-color);
+    background: var(--radio-buttons);
     width: 100%;
     height: 379px;
     display: flex;
@@ -87,36 +87,36 @@
     resize: none;
   }
   textarea::placeholder {
-    color: #888888;
+    color: var(--placeholder-color);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
   }
   textarea:focus {
     border-style: solid;
-    border-color: #5db3e5;
+    border-color: var(--light-blue);
   }
   textarea:focus::placeholder {
     color: transparent;
   }
   textarea:disabled {
-    background-color: #ededed; /* Change this to the color you prefer */
+    background-color: var(--disabled-bg);
   }
   textarea:disabled::placeholder {
-    color: #888888; /* Change this to the color you prefer */
+    color: var(--placeholder-color);
   }
   .left {
     flex-direction: row;
     justify-content: right;
   }
   .message {
-    color: white;
+    color: var(--text-white);
     font-size: 16px;
     font-weight: 300;
     width: 70%;
     margin: 20px 0 20px 0;
   }
   .prompt {
-    color: #fff;
+    color: var(--text-white);
     font-size: 16px;
     line-height: 1.4;
     margin-bottom: 10px;

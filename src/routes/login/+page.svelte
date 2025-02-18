@@ -15,41 +15,13 @@
     {/if}
 
     <div class="input-div">
-      <input
-        class="input-box"
-        id="username"
-        name="username"
-        type="text"
-        placeholder="Username"
-        required
-      />
+      <input class="input-box" id="username" name="username" type="text" placeholder="Username" required />
     </div>
 
     <div class="input-div">
-      <input
-        class="input-box"
-        id="password"
-        name="password"
-        type={showPassword ? "text" : "password"}
-        placeholder="Password"
-        required
-      />
-      <button
-        type="button"
-        class="password-toggle"
-        on:click={() => (showPassword = !showPassword)}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
+      <input class="input-box" id="password" name="password" type={showPassword ? "text" : "password"} placeholder="Password" required />
+      <button type="button" class="password-toggle" on:click={() => (showPassword = !showPassword)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           {#if showPassword}
             <!-- Show crossed-out eye icon when password is visible -->
             <path
@@ -74,12 +46,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
+    min-height: calc(100vh - 178px);
+    width: 100%;
   }
 
   form {
@@ -87,13 +55,13 @@
     width: 100%;
     max-width: 450px;
     padding: 3.5rem;
-    background: white;
+    background: var(--background-color);
     border-radius: 50px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
   .error {
-    color: #ef4444;
+    color: var(--error-color);
     font-size: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -108,20 +76,22 @@
     width: 100%;
     height: 45px;
     padding: 0 1.5rem;
-    border: 2px solid #e5e7eb;
+    border: 2px solid var(--border-color);
     border-radius: 22.5px;
     font-size: 1.125rem;
     outline: none;
     transition: all 0.2s ease;
+    background-color: var(--form-bg);
+    color: var(--text-color);
   }
 
   .input-box::placeholder {
-    color: #9ca3af;
+    color: var(--placeholder-color);
     font-size: 1.125rem;
   }
 
   .input-box:focus {
-    border-color: #000000;
+    border-color: var(--text-color);
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
   }
 
@@ -132,14 +102,14 @@
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #9ca3af;
+    color: var(--placeholder-color);
     cursor: pointer;
     padding: 8px;
     transition: color 0.2s ease;
   }
 
   .password-toggle:hover {
-    color: #6366f1;
+    color: var(--primary-blue);
   }
 
   .password-toggle svg {
@@ -151,8 +121,8 @@
     margin-top: 1.25rem;
     width: 100%;
     height: 45px;
-    background: #5783ca;
-    color: white;
+    background: var(--medium-blue);
+    color: var(--text-white);
     border: none;
     border-radius: 22.5px;
     font-size: 1.125rem;

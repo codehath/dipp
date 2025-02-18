@@ -47,11 +47,11 @@
         --background-gradient: url("/images/background-gradient.png");
         --background-color: #ffffff;
         --image-filter: none;
-        
+
         --text-color: #000000;
         --text-white: #ffffff;
         --text-black: #ffffff;
-        
+
         --primary-blue: #168ace;
         --medium-blue: #639fc9;
         --light-blue: #5db3e5;
@@ -61,19 +61,17 @@
         --progress-border: #d6c4be;
         --pill-bg: #b5b5b5;
         --form-bg: #f3f3f3;
-        
+
         --disabled-bg: #ededed;
         --placeholder-color: #888888;
-        
 
         --error-color: #ef4444;
         --complete-green: #08d85e;
         --complete-border-green: #2faa62;
         --weekly-task-number-box: #ffffff;
-        --radio-buttons:#ffffff;
-        --circle-button-color:#ffffff;
-        --logout-color:#ffffff;
-
+        --radio-buttons: #ffffff;
+        --circle-button-color: #ffffff;
+        --logout-color: #ffffff;
       }
 
       [data-theme="dark"] {
@@ -81,66 +79,64 @@
         --background-gradient: url("/images/background-gradient-dark.png");
         --background-color: #3f3f3f;
         --image-filter: invert(1) hue-rotate(180deg);
-        
+
         --text-color: #ffffff;
         --text-white: #ffffff;
         --text-black: #000000;
-        
+
         --primary-blue: #185c94;
         --medium-blue: #034c88;
         --light-blue: #053c69;
-        
-        
+
         --border-color: var(--clr-surface-a10);
         --progress-bg: #3f3f3f;
         --progress-border: #535353;
         --pill-bg: #666666;
         --form-bg: #2c2c2c;
-        
+
         --disabled-bg: #333333;
         --placeholder-color: #d5d5d5;
-        
 
         --error-color: #ef4444;
         --complete-green: #4caf50;
         --complete-border-green: #418143;
         --weekly-task-number-box: #282828;
-        --radio-buttons:var(--clr-surface-tonal-a20);
+        --radio-buttons: var(--clr-surface-tonal-a20);
         --circle-button-color: var(--clr-surface-tonal-a20);
         --logout-color: #000000;
       }
-/** Base colors */
---clr-dark-a0: #000000;
---clr-light-a0: #ffffff;
+      /** Base colors */
+      --clr-dark-a0: #000000;
+      --clr-light-a0: #ffffff;
 
-/** Dark theme primary colors */
---clr-primary-a0: #168ace;
---clr-primary-a10: #4796d4;
---clr-primary-a20: #64a3d9;
---clr-primary-a30: #7dafdf;
---clr-primary-a40: #95bce4;
---clr-primary-a50: #abc9ea;
+      /** Dark theme primary colors */
+      --clr-primary-a0: #168ace;
+      --clr-primary-a10: #4796d4;
+      --clr-primary-a20: #64a3d9;
+      --clr-primary-a30: #7dafdf;
+      --clr-primary-a40: #95bce4;
+      --clr-primary-a50: #abc9ea;
 
-/** Dark theme surface colors */
---clr-surface-a0: #121212;
---clr-surface-a10: #282828;
---clr-surface-a20: #3f3f3f;
---clr-surface-a30: #575757;
---clr-surface-a40: #717171;
---clr-surface-a50: #8b8b8b;
+      /** Dark theme surface colors */
+      --clr-surface-a0: #121212;
+      --clr-surface-a10: #282828;
+      --clr-surface-a20: #3f3f3f;
+      --clr-surface-a30: #575757;
+      --clr-surface-a40: #717171;
+      --clr-surface-a50: #8b8b8b;
 
-/** Dark theme tonal surface colors */
---clr-surface-tonal-a0: #181d22;
---clr-surface-tonal-a10: #2d3237;
---clr-surface-tonal-a20: #44484c;
---clr-surface-tonal-a30: #5c5f63;
---clr-surface-tonal-a40: #75787b;
---clr-surface-tonal-a50: #8f9194;
+      /** Dark theme tonal surface colors */
+      --clr-surface-tonal-a0: #181d22;
+      --clr-surface-tonal-a10: #2d3237;
+      --clr-surface-tonal-a20: #44484c;
+      --clr-surface-tonal-a30: #5c5f63;
+      --clr-surface-tonal-a40: #75787b;
+      --clr-surface-tonal-a50: #8f9194;
 
-      /** Examples */ 
+      /** Examples */
       .bg-primary {
-        color: var(--clr-primary-a50); 
-        background-color: var(--clr-surface-a0); 
+        color: var(--clr-primary-a50);
+        background-color: var(--clr-surface-a0);
       }
       * {
         box-sizing: border-box;
@@ -220,21 +216,24 @@
       .dashboard-container {
         position: relative;
         font-weight: 400;
-      }
-      .dashboard-container img {
-        width: 1020px;
-        max-width: 100%;
-      }
-      .dashboard-contents {
-        width: 100%;
+        border-style: solid;
+        border-color: var(--primary-blue);
         flex-direction: column;
         justify-content: space-between;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 20px 30px 40px 30px;
+        gap: 35px;
+        width: 980px;
+        max-width: 97%;
+        max-height: 330px;
+        border-radius: 20px;
+        border-color: var(--primary-blue);
+        border-style: solid;
+        background-color: var(--light-blue);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .module-colour {
+        background-color: var(--background-color);
+        border: solid var(--border-color);
       }
       .top-text {
         flex-direction: row;
@@ -262,6 +261,7 @@
         border-style: solid;
         background-color: var(--progress-bg);
         padding: 20px;
+        margin-bottom: 20px;
       }
       .progress-section {
         flex-direction: row;
@@ -329,11 +329,31 @@
       .triplet-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
-        width: 1056px;
+        gap: 20px;
+        width: 980px;
         max-width: 100%;
       }
-      .padding {
-        padding: 0 1vw;
+      .activity {
+        position: relative;
+        height: 394px;
+        max-height: 100%;
+        background-color: var(--form-bg);
+        border-style: solid;
+        border-color: var(--primary-blue);
+        border-radius: 20px;
+      }
+      .module {
+        padding: 6%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: top;
+        justify-items: stretch;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        grid-gap: 0px;
       }
       .pop-up {
         position: relative;
@@ -399,27 +419,12 @@
         .day {
           font-size: 24px;
         }
-        .dashboard-image {
-          display: none;
-        }
         .dashboard-container {
           width: 1056px;
           max-width: 90%;
           border-radius: 20px;
           padding: 10px;
           margin-bottom: 20px;
-        }
-        .dashboard-colour {
-          background-color: var(--light-blue);
-          border: solid var(--primary-blue);
-        }
-        .module-colour {
-          background-color: var(--background-color);
-          border: solid var(--border-color);
-        }
-        .dashboard-contents {
-          position: static;
-          padding: 0;
         }
         .day-pill {
           width: 100%;
@@ -439,6 +444,7 @@
         }
         .triplet-container {
           grid-template-columns: 1fr;
+          max-width: 90%;
         }
         .progress-bar {
           display: none;

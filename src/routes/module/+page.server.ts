@@ -69,7 +69,7 @@ export const actions = {
           and(eq(weeklyTasks.user_id, userID), eq(weeklyTasks.task_id, taskID)),
         );
     }
-    throw redirect(303, `module?view=tasks-${taskID}`);
+    throw redirect(303, `module?view=tasks`);
   },
 };
 

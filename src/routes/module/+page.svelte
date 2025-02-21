@@ -146,6 +146,9 @@
               <h1>
                 {selectedTask.task} ({selectedTask.time} minutes)
               </h1>
+              {#if isTaskComplete(selectedTask)}
+                <p class="complete"><strong>Task Completed</strong></p>
+              {/if}
               <h2>Goal:</h2>
               <p>{selectedTask.goal}</p>
 
@@ -169,15 +172,13 @@
                 {@html selectedTask.specifics}
               {/if}
             </div>
-            {#if isTaskComplete(selectedTask)}
-              <p class="complete"><strong>Task Completed</strong></p>
-            {:else}
-              <form class="block" bind:this={updateForm} action="{path}/?/update" method="post">
-                <label for="completed">Mark as Complete</label>
-                <input type="checkbox" id="completed" name="completed" bind:checked={completed} on:change={handleCheckBox} />
-                <input type="hidden" name="taskID" value={selectedTask.id} />
-              </form>
-            {/if}
+              {#if !isTaskComplete(selectedTask)}
+                <form class="block" bind:this={updateForm} action="{path}/?/update" method="post">
+                  <label for="completed">Mark as Complete</label>
+                  <input type="checkbox" id="completed" name="completed" bind:checked={completed} on:change={handleCheckBox} />
+                  <input type="hidden" name="taskID" value={selectedTask.id} />
+                </form>
+              {/if}
             <button
               class="form-button black"
               on:click={() => {

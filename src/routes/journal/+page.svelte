@@ -30,15 +30,20 @@
         <h1>Daily Journal</h1>
         <h4><strong>{dayData.title}</strong></h4>
         {#if form?.message}
-          <p class="message">{form.message}</p>
+          <p class="success-message">{form.message}</p>
         {/if}
 
         {#if !userTasks.journal}
-          <form action="{path}/?/update" method="post">
+          <form action="{path}/?/update" method="post" on:submit|preventDefault={e => {
+            const textarea = e.target.querySelector('textarea[name="journal"]');
+            if (textarea.value.trim()) {
+              e.target.submit();
+            }
+          }}>
             <input type="hidden" name="id" value={userTasks.id} />
             <div class="journal-container">
               <p class="prompt">{dayData.prompt}</p>
-              <textarea name="journal" />
+              <textarea name="journal" required />
             </div>
             <div class="left">
               <input class="form-button" type="submit" value="Submit" />
@@ -108,12 +113,9 @@
     flex-direction: row;
     justify-content: right;
   }
-  .message {
-    color: var(--text-white);
-    font-size: 16px;
-    font-weight: 300;
-    width: 70%;
-    margin: 20px 0 20px 0;
+  .success-message {
+    color: #2ecc71;
+    font-weight: bold;
   }
   .prompt {
     color: var(--text-white);

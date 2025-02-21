@@ -19,10 +19,6 @@ export const actions = {
     const journal = formData.get("journal")?.toString();
     const id = formData.get("id")?.toString();
 
-    if (!journal || !id) {
-      return fail(400, { message: "Error updating journal" });
-    }
-
     await db
       .update(dailyTasks)
       .set({

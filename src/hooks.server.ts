@@ -37,7 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const day = getDay(user[0].start_date);
   // Only redirect if trying to access a protected route
-  if (!nonAuthRoutes.includes(event.url.pathname) && !isApiRoute) {
+  if (!nonAuthRoutes.includes(event.url.pathname) && !isApiRoute && userID!=="0") {
     if (day < 1) {
       throw redirect(303, "/welcome");
     } else if (day > 21) {

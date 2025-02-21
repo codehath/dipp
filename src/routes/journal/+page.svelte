@@ -114,7 +114,7 @@
     justify-content: right;
   }
   .success-message {
-    color: #2ecc71;
+    color: var(--complete-green);
     font-weight: bold;
   }
   .prompt {
